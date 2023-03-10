@@ -77,4 +77,4 @@ One option to install them all at once is to run the following command:
 
 ## 6) Analysis:
 
-#### Finally by using scripts in "Simulation/Analysis scripts" we can analysis results SimWT_W0.1_V1_param1_CSVs_v45.csv.
+#### Finally by using scripts in "Simulation/Analysis scripts" we are able to analysis results in "SimWT_W0.1_V1_param1_CSVs_v45.csv".
