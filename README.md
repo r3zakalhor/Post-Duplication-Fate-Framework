@@ -51,11 +51,11 @@ One option to install them all at once is to run the following command:
   
  ##### B) Second, run following command to run a simulation: 
  
- 		- $../../build/bin/aevol_create -C WT_W0.1_V1.txt
-		- $../../build/bin/aevol_run -n 1100000
-		- $../../build/bin/aevol_post_lineage
-		- $../../build/bin/aevol_post_protein_map lin*
-		- $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000
+- $../../build/bin/aevol_create -C WT_W0.1_V1.txt
+- $../../build/bin/aevol_run -n 1100000
+- $../../build/bin/aevol_post_lineage
+- $../../build/bin/aevol_post_protein_map lin*
+- $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000
 
 An alternative option that we often use (and that proved efficient) is to generate Wild-Types on long evolutions (typically 10 million generations) and then to initialize all the experiments from these WTs. So, instead of using ../../build/bin/aevol_create we can use ../../build/bin/aevol_create -C WT0.txt (a list of wild types that evolved for 10 million generations are in CentralizedFateClassifier directory)
   
