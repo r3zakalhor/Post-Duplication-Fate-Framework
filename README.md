@@ -9,7 +9,7 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
 
   cd edited aevol
   
-  mkdir build (create build directory at "edited aevol" directory)
+  mkdir build
   
   cd build
   
@@ -17,14 +17,17 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
   
   make
 
-In that process, you'll need development packages.
-Here are the basic dependencies on a Debian system:
-  build-essential
-  cmake
-  zlib1g-dev
-  libboost-dev
-  libx11-dev
-  libboost-filesystem1.67-dev
+
+
+In that process, you'll need development packages. Here are the basic dependencies on a Debian system:
+
+build-essential
+cmake
+zlib1g-dev
+libboost-dev
+libx11-dev  
+libboost-filesystem1.67-dev
+  
 One option to install them all at once is to run the following command:
 sudo apt install build-essential cmake zlib1g-dev libboost-dev libx11-dev libboost-filesystem1.67-dev
 
