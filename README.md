@@ -57,15 +57,7 @@ One option to install them all at once is to run the following command:
 - $../../build/bin/aevol_post_protein_map lin*  (To map all proteins after each event for the given lineage file generated from previous command)
 - $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000  (To reconstruct gene tree and calculate the probabilities of post-replication fates of 1000000 first generations from proteins_list_after_events.csv that is generated from previous command)
 
-An alternative option that we often use (and that proved efficient) is to generate Wild-Types on long evolutions (typically 10 million generations) and then to initialize all the experiments from these WTs. So, instead of using ../../build/bin/aevol_create we can use ../../build/bin/aevol_create -C WT0.txt (a list of wild types that evolved for 10 million generations are in CentralizedFateClassifier directory)
-  
-  3)Third, run this command to run the simulation by specifying the number of generation using -n: ../../build/bin/aevol_run -n 100000 (note: just make sure the number of generations here should be greater or equal to the BACKUP_STEP in the param.in) 
-    After using this command, we have list of outputs that we can use to find the list of events during generations for the best individual.
-    
-  4)To reconstruct the lineage of a given individual we used: ../../build/bin/aevol_post_lineage (It rebuilds it for the best individual without specifying a individual)
-  
-  5)Finally, using this command, we can map all proteins after each event for the given lineage file generated in the previous step: ../../build/bin/aevol_post_protein_map lineage-b000000000-e000010000-i0-r0.ae
-    The output is a CSV file containing a list of proteins mapped after each event.
+####### Outputs: 
 
 But at the bash script, we want to run serveral simulations with different fitness function. So, we use all these command to run simulations in bash script but with using different param.in file at each simulation. 
 
