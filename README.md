@@ -67,7 +67,7 @@ One option to install them all at once is to run the following command:
 
 ###### Outputs: The output is a directory "SimWT_W0.1_V1_param1_CSVs" which contains all csv files and newick files.
 
-## 4) Concat All CSV files:
+## 5) Concat All CSV files:
 
 #### To concat all CSV files we need to use python code in "Simulation/Concat simulation files" as follow:
 
