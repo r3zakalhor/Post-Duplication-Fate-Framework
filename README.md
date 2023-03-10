@@ -31,6 +31,7 @@ One option to install them all at once is to run the following command:
 
 ## 2) Compile Fate Classifier:
 
+- $cd CentralizedFateClassifier
 - $g++ -std=c++11 CentralizedFateClassifier.cpp GeneTreeConstructor.h probabilitiescalculation.h -o CentralizedFateClassifier
 
 ## 3) Second, we can use bash script located in the CentralizedFateClassifier directory to run a bunch of aevol simulations:
