@@ -71,5 +71,5 @@ One option to install them all at once is to run the following command:
 
 #### To concat all CSV files we need to use python code in "Simulation/Concat simulation files" as follow:
 
-- $run-maker.py --indir=$file --outdir=${file}_v5  --dov5
+- $run-maker.py --indir=Aevol/examples/new simulation/SimWT_W0.1_V1_param1_CSVs --outdir=Aevol/examples/new simulation/SimWT_W0.1_V1_param1_CSVs_v5 --dov5
 
