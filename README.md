@@ -57,8 +57,7 @@ One option to install them all at once is to run the following command:
 		- $../../build/bin/aevol_post_protein_map lin*
 		- $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000
 
-    An alternative option that we often use (and that proved efficient) is to generate Wild-Types on long evolutions (typically 10 million generations) and then to initialize all the experiments from these WTs.
-    So, instead of using ../../build/bin/aevol_create we can use ../../build/bin/aevol_create -C WT0.txt (a list of wild types that evolved for 10 million generations are in CentralizedFateClassifier directory)
+An alternative option that we often use (and that proved efficient) is to generate Wild-Types on long evolutions (typically 10 million generations) and then to initialize all the experiments from these WTs. So, instead of using ../../build/bin/aevol_create we can use ../../build/bin/aevol_create -C WT0.txt (a list of wild types that evolved for 10 million generations are in CentralizedFateClassifier directory)
   
   3)Third, run this command to run the simulation by specifying the number of generation using -n: ../../build/bin/aevol_run -n 100000 (note: just make sure the number of generations here should be greater or equal to the BACKUP_STEP in the param.in) 
     After using this command, we have list of outputs that we can use to find the list of events during generations for the best individual.
