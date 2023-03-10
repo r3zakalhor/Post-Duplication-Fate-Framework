@@ -1,0 +1,68 @@
+\documentclass{article}
+% main document, called main.tex
+\usepackage{tikz}
+\usetikzlibrary{external}
+\usetikzlibrary{math}
+\tikzexternalize % activate!
+\begin{document}
+\begin{tikzpicture}
+%\draw[blue, very thick] (0,0) rectangle (3,2);
+
+\tikzmath{
+\mg = <!mg>;
+\hg = <!hg>;
+\wg = <!wg>;
+\ma = <!ma>;
+\ha = <!ha>;
+\wa = <!wa>;
+\mb = <!mb>;
+\hb = <!hb>;
+\wb = <!wb>;
+\mgadjusted = <!mg_adjusted>;
+\hgadjusted = <!hg_adjusted>;
+\wgadjusted = <!wg_adjusted>;
+\maadjusted = <!ma_adjusted>;
+\haadjusted = <!ha_adjusted>;
+\waadjusted = <!wa_adjusted>;
+\mbadjusted = <!mb_adjusted>;
+\hbadjusted = <!hb_adjusted>;
+\wbadjusted = <!wb_adjusted>;
+\zeroheight = <!zero_height>;
+\pneo = <!pneo>;
+\psubfunc = <!psubfunc>;
+\pcons = <!pcons>;
+\pspec = <!pspec>;
+\ppseudo = <!ppseudo>;
+}
+
+
+
+\draw[white, fill=white, ultra thick, fill opacity=1] (0, -4) -- (10, -4) -- (10, 10) -- (0, 10) -- cycle;
+\draw[<!gcolor>, fill=<!gcolor>, thin, fill opacity=0.5] (\mgadjusted - \wgadjusted, \zeroheight) -- (\mgadjusted + \wgadjusted, \zeroheight) -- (\mgadjusted,\hgadjusted) -- cycle;
+\draw[<!acolor>, fill=<!acolor>, thin, fill opacity=0.3] (\maadjusted - \waadjusted, \zeroheight) -- (\maadjusted + \waadjusted, \zeroheight) -- (\maadjusted,\haadjusted) -- cycle;
+\draw[<!bcolor>, fill=<!bcolor>, thin, fill opacity=0.3] (\mbadjusted - \wbadjusted, \zeroheight) -- (\mbadjusted + \wbadjusted, \zeroheight) -- (\mbadjusted,\hbadjusted) -- cycle;
+
+%legend
+\draw[<!gcolor>, fill=<!gcolor>, thick, fill opacity=0.5] (0.75,9.25) -- (1.25,9.25) -- (1,9.5) -- cycle;
+\node[] at (1.5,9.25) { $g$};
+
+\draw[<!acolor>, fill=<!acolor>, thick, fill opacity=0.5] (2,9.25) -- (2.5,9.25) -- (2.25,9.5) -- cycle;
+\node[] at (2.75,9.25) { $a$};
+
+\draw[<!bcolor>, fill=<!bcolor>, thick, fill opacity=0.5] (3.25,9.25) -- (3.75,9.25) -- (3.5,9.5) -- cycle;
+\node[] at (4,9.25) { $b$};
+
+\node[] at (5,-1) {$mg = \mg$ \quad  $hg = \hg$ \quad  $wg = \wg$};
+\node[] at (5,-1.5) {$ma = \ma$ \quad  $ha = \ha$ \quad  $wa = \wa$};
+\node[] at (5,-2) {$mb = \mb$ \quad  $hb = \hb$ \quad  $wb = \wb$};
+
+
+\node[] at (5,-3) {$subfunc = \psubfunc$ \quad  $neo = \pneo$ \quad  $cons = \pcons$};
+\node[] at (5,-3.5) { $spec = \pspec$ \quad $pseudo = \ppseudo$};
+
+
+
+
+\end{tikzpicture}
+
+\end{document}

@@ -1,0 +1,15 @@
+# -------------------------------------------------
+#  Average mutation statistics over the population 
+# -------------------------------------------------
+# 
+#  1. Generation
+#  2. Number of local mutations undergone
+#  3. Number of chromosomic rearrangements undergone
+#  4. Number of switch undergone
+#  5. Number of indels undergone
+#  6. Number of duplications undergone
+#  7. Number of deletions undergone
+#  8. Number of translocations undergone
+#  9. Number of inversions undergone
+# 
+0 0 0 0 0 0 0 0 0

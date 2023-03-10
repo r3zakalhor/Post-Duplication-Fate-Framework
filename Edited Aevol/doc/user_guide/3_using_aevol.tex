@@ -1,0 +1,262 @@
+\chapter{Tutorial: Using \aevol{}}
+\label{chap:using-aevol}
+
+
+\vspace{5mm}
+
+\section{Introduction}
+
+\aevol{} is made up of 4 main tools (\verb?aevol_create?, \verb?aevol_run?, \verb?aevol_propagate? and \verb?aevol_modify? -- man pages provided in appendix 1) and a set of post-treatment tools (prefixed by \verb?aevol_misc_?).
+
+%If you have tried one of the examples provided (see \ref{chap:first-runs}), you may have noticed that a call to \verb?aevol_create? produces a whole set of files organized in different directories.
+Everything in \aevol{} relies on an ad-hoc file organization where all the data for an experiment is stored: organisms in the \verb?populations? directory, the task they are selected for in \verb?environment?, the experimental setup in \verb?exp_setup? and so on. It is not recommended to manually modify these files since this may cause some inconsistency leading to undefined behaviour. Besides, most of these files are compressed.
+
+Once created, an experiment can either be run, propagated or modified.
+
+\vspace{-7mm}
+\paragraph{Running}an experiment simply means simulate evolution for a given number of generations.
+
+\vspace{-7mm}
+\paragraph{Propagating}an experiment means creating a fresh copy of it (setting the current generation number to 0).
+
+\vspace{-7mm}
+\paragraph{Modifying}an experiment actually means modifying some of its parameters. The \verb?aevol_modify? tool virtually allows for the modification of any parameter of the experiment, including manipulations of the whole population or of individual organisms (\emph{e.g.} ``I want the population to be filled with clones of the organism having the longest genome'' or ``I want a random subset of organisms to be switched to super mutators''). To date, only the most common experiment modifications have been implemented but feel free to ask for more (\verb?aevol-feat-request@lists.gforge.liris.cnrs.fr?).
+
+
+
+\aevol{} comes along with a set of simple but representative examples. Following these examples is probably the best way to get going with \aevol{} and have a quick overview of the possibilities it offers. In any case, keep in mind that you can always get help by typing \verb?man aevol_cmd? (only available for the 4 main commands) or \verb?aevol_cmd -h? (available for all the commands).
+
+Most examples are showcases for different features of the model such as spatially structured populations, plasmids and horizontal transfer. They can all be run with the same very simple commands. Simply follow the instructions from section \ref{sect:basic_examples}.
+The \verb?workflow? example proposes a typical \emph{``experiments on a previously generated wild-type''} workflow. It will lead you through the whole experimental process, including a sample of possible post-treatments you can use to analyse the outcome of your different simulations.
+
+
+\section{Basic examples}
+\label{sect:basic_examples}
+
+To run all but the \verb?workflow? examples, simply follow the following steps:
+
+\begin{enumerate}
+\item Install \aevol{}, preferentially with graphics enabled (see chapter \ref{chap:install})
+\item cd into the directory of the example (\emph{e.g.} \verb?examples/basic?)
+\item
+run \verb?aevol_create?
+\item
+run \verb?aevol_run?
+\item Have a look at the graphical outputs (Ctrl+Q to quit)
+\item [Optional] Explore the different statistics created in the \verb?stats? subdirectory.
+\end{enumerate}
+
+
+\section{The \emph{workflow} example}
+The workflow example provides an example of one of the many different workflows that can be used for experiments with \aevol{}. The main idea underlying this workflow is to parallel wet lab experiments, which are conducted on evolved organisms. To use already evolved organisms for \aevol{} experiments, one can either use an evolved genome provided by the community or evolve one's own. This example describes the latter (more complete) case.
+
+
+\subsection{\emph{Wild-Type} generation}
+Generating a Wild-Type in \aevol{} is very easy, all you need is a parameter file describing the conditions in which it (the Wild-Type) should be created (population size, mutation rates, task to perform, ...).
+However, have in mind that founding effects can influence the course of evolution, especially in the case of overconstrained evolution. It is recommended to use mild mutation and rearrangement rates and to let the environment vary over time to avoid overconstrained or overspecialized genomes. A sample parameter file is provided in \verb?examples/workflow/wild_type?.
+Once your parameter file is ready, simply run the following commands (it is recommended you do that in a dedicated directory, called \verb?wild_type? for example):
+
+\begin{verbatim}
+	cd wild_type
+	aevol_create -f your_param_file
+	aevol_run -n number_of_generations
+\end{verbatim}
+
+%$number\_of\_generations$ should be on the order of a few thousand...
+
+
+\subsection{Experimental setup}
+This is where the setup of the campaign of experiments is done.
+As it would be done in a wet lab experiment, different populations will be allowed to evolve in different conditions to compare the different outcomes. In this example, we will start from an evolved population called the ``wild type'', created as above. We will use this wild type to start 10 evolutionary lines that will have to adapt to a new environment. Five of them will evolve under the same rates of chromosomal rearrangements as the wild type, whereas the other five will be ``mutators'' evolving under higher rates of chromosomal rearrangements. Both groups will evolve during 10,000 generations.
+
+First, the wild type population should have been created with \verb?aevol_create? and \\ \verb?aevol_run -n 5000? (for example). Then, the \verb?aevol_propagate? tool allows for an exact copy of the whole data structure required by \aevol{} with a reset of the current generation number to 0. Followed by a call to \verb?aevol_modify?, it allows us to set up our example in the 2 following steps:
+
+%\begin{enumerate}
+
+\subsubsection{Propagate the experiment}
+The \verb?aevol_propagate? tool allows for the creation of fresh copies of an experiment (as it was at a given time). The \verb?-i? option sets the input directory and the \verb?-o? option, the output directory. You must provide a distinct output directory for each of the experiments you wish to run. If the output directory does not exist, it will be created.  If, as we do here, you use \verb?aevol_propagate? repeatedly to initialize several simulations, you should specify a different seed for each simulation, otherwise all simulations will yield exactly the same results. You can use the option -S to do so. In this case, the random drawings will be different for all random processes enabled in your simulations (mutations, stochastic gene expression, selection, migration, environmental variation, environmental noise). Alternatively, to change the random drawings for specific random processes only, do not use -S but the options -m, -s, -t, -e, -n (see \verb?aevol_propagate -h? for more information on those options).
+\begin{verbatim}
+	cd ..
+	aevol_propagate -g 5000 -i wild_type -o line01 -S 97558
+	aevol_propagate -g 5000 -i wild_type -o line02 -S 535241
+	aevol_propagate -g 5000 -i wild_type -o line03 -S 1499
+	aevol_propagate -g 5000 -i wild_type -o line04 -S 916189
+	aevol_propagate -g 5000 -i wild_type -o line05 -S 677
+	aevol_propagate -g 5000 -i wild_type -o line06 -S 43743
+	aevol_propagate -g 5000 -i wild_type -o line07 -S 7265
+	aevol_propagate -g 5000 -i wild_type -o line08 -S 11942
+	aevol_propagate -g 5000 -i wild_type -o line09 -S 29734
+	aevol_propagate -g 5000 -i wild_type -o line10 -S 43155
+\end{verbatim}
+
+\subsubsection{Modify parameters to meet the experiment requirements}
+For each of the propagated experiments, create a plain text file (\emph{e.g.} ``newparam.in'') containing the parameters to be modified. Parameters that do not appear in this file will remain unchanged. The syntax is the same as for the parameter file used for \verb?aevol_create?. For example, for the lines 1 to 5, we will create a text file called ``newparam-groupA.in'' will consist in the following lines:
+\begin{verbatim}
+   # New environment
+    ENV_GAUSSIAN  0.5   0.2   0.05
+    ENV_GAUSSIAN  0.5   0.4   0.05
+    ENV_GAUSSIAN  0.5   0.8   0.05
+    ENV_VARIATION none
+\end{verbatim}
+ For the lines 6 to 10, we also want to modify the rearrangement rates, hence the file ``newparam-groupB.in'' will consist in the following lines:
+\begin{verbatim}
+   # New environment
+    ENV_GAUSSIAN  0.5   0.2   0.05
+    ENV_GAUSSIAN  0.5   0.4   0.05
+    ENV_GAUSSIAN  0.5   0.8   0.05
+    ENV_VARIATION none
+   # New rearrangement rates
+    DUPLICATION_RATE        1e-5
+    DELETION_RATE           1e-5
+    TRANSLOCATION_RATE      1e-5
+    INVERSION_RATE          1e-5
+\end{verbatim}
+Then we will run the following commands:
+\begin{verbatim}
+cd line01; aevol_modify --gener 0 --file ../newparam-groupA.in; cd ..
+cd line02; aevol_modify --gener 0 --file ../newparam-groupA.in; cd ..
+cd line03; aevol_modify --gener 0 --file ../newparam-groupA.in; cd ..
+cd line04; aevol_modify --gener 0 --file ../newparam-groupA.in; cd ..
+cd line05; aevol_modify --gener 0 --file ../newparam-groupA.in; cd ..
+
+cd line06; aevol_modify --gener 0 --file ../newparam-groupB.in; cd ..
+cd line07; aevol_modify --gener 0 --file ../newparam-groupB.in; cd ..
+cd line08; aevol_modify --gener 0 --file ../newparam-groupB.in; cd ..
+cd line09; aevol_modify --gener 0 --file ../newparam-groupB.in; cd ..
+cd line10; aevol_modify --gener 0 --file ../newparam-groupB.in; cd ..
+\end{verbatim}
+
+%\end{enumerate}
+
+
+\subsection{Run the simulations}
+Each of the propagated experiments can be run thus:
+\begin{verbatim}
+	aevol_run -n <number_of_generations>
+\end{verbatim}
+Of course, all the runs being completely independent, you can submit these tasks to a cluster of your choice to save time.
+
+
+\subsection{Analyse the outcome}
+
+In addition to the set a statistics files that are recorded in the \verb?stats? directory, \aevol{} includes a set of post-treatment tools to further analyse the outcome of your experiments, please refer to section \ref{sect:post-treatments}.
+
+
+\section{Post-treatment Tools}
+\label{sect:post-treatments}
+
+In addition to the set a statistics files that are recorded in the \verb?stats? directory, \aevol{} includes a set of post-treatment tools to further analyse the outcome of your experiments.
+
+Please note that these tools have only been tested on simple experimental setups and can fail with exotic ones. For example, the tools listed below are fully functional under a single-chromosome setup, but are still under development for most complicated settings with both a chromosome and exchangeable plasmids. However, in most cases, the problems can easily be remedied. Please do not hesitate to send us your request (aevol-feat-request@lists.gforge.liris.cnrs.fr).
+
+
+\subsection{aevol\_misc\_view\_generation}
+\label{sect:view-gener}
+The \verb?view_generation? tool is probably the easiest and most straightforward tool provided with \aevol{}.
+It allows one to visualize a generation using the exact same graphical outputs used in \verb?aevol_run?.
+However, since it relies on graphics, it is only available when \aevol{} is compiled with X enabled (which is the default).
+
+Usage: \verb?aevol_misc_view_generation -g generation_number?
+
+There must have been a backup of the population at this generation. For example, if the program is called with the option
+\verb?-g 4000?, there must be a file called \verb?pop_004000.ae? in the \verb?populations? directory.
+
+
+\subsection{aevol\_misc\_create\_eps}
+\label{sect:create-eps}
+The \verb?create_eps? tool takes a generation number as an input, and produces several EPS files describing an individual of this population (the best one by default) at this generation:
+\begin{itemize}
+\item \verb?best_genome_with_CDS.eps?, where the chromosome is represented by a circle, and coding sequences on the leading (resp. lagging) strand are drawn as arcs outside (resp. inside) the circle.
+\item \verb?best_genome_with_mRNAs.eps?, where the chromosome is represented by a circle, and transcribed sequences on the leading (resp. lagging) strand are drawn as arcs outside (resp. inside) the circle. Gray arcs correspond to non-coding RNAs and black arcs correspond to coding RNAs.
+\item \verb?best_phenotype.eps?, where the phenotype resulting from the interaction of all genes is superimposed to the environmental target.
+\item \verb?best_triangles.eps?, where all triangles resulting from the translation of a coding sequence are superimposed.
+\end{itemize}
+
+Usage: \verb?aevol_misc_create_eps [-i INDEX | -r RANK] -g GENER?
+
+There must have been a backup of the population at this generation. For example, if the program is called with the option
+\verb?-g 4000?, there must be a file called \verb?pop_004000.ae? in the \verb?populations? directory. The program will then create a subdirectory called \\\verb?analysis-generation004000? and write the EPS files therein. If neither index nor rank are specified, the program creates the EPS files of the best individual.
+
+
+\subsection{aevol\_misc\_mutagenesis}
+\label{sect:mutagenesis}
+
+This \verb?mutagenesis? tool creates and evaluates single mutants of an individual saved in a backup,  by default the best of its generation. Use option \verb?-g? to specify the generation number contanining the individual of interest. There must have been a backup of the population at this generation. For example, if the program is called with the option
+\verb?-g 4000?, there must be a file called \verb?pop_004000.ae? in the \verb?populations? directory.
+
+Use either the \verb?-r? or the \verb?-i? option to select another individual than the best one: with \verb?-i?, you have to provide the ID of the individual, and with \verb?-r? the rank (1 for the individual with the lowest fitness, N for the fittest one).
+
+The type of mutations to perform must be specified with the \verb?-m? option. Choose 0 to create mutants with a point mutation, 1 for a small insertion, 2 for a small deletion, 3 for a duplication, 4 for a large deletion, 5 for a translocation or 6 for an inversion.
+
+For the point mutations, all single mutants will be created and evaluated. For the other mutation types, an exhaustive mutagenesis would take too much time, hence only a sample of mutants (1000 by default) will be generated. Use option \verb?-n? to specify another sample size.
+
+The output file will be placed in a subdirectory called \verb?analysis-generationGENER?.
+
+Usage:
+\begin{verbatim}
+aevol_misc_mutagenesis -g GENER [-i INDEX | -r RANK]
+                       [-m MUTATIONTYPE] [-n NBMUTANTS]
+\end{verbatim}
+
+
+\subsection{aevol\_misc\_robustness}
+\label{sect:robustness}
+
+The \verb?robustness? tool computes the replication statistics of all the individuals of a given generation, like the proportion of neutral, beneficial, deleterious offsprings. This is done by simulating $NBCHILDREN$ replications for each individual (1000 replications by default), with its mutation, rearrangement and transfer rates. Depending on those rates and genome size, there can be several mutations per replication. Those global statistics are written in \verb?analysis-generationGENER/robustness-allindivs-gGENER.out?, with one line per individual in the specified generation.
+
+The program also outputs detailed statistics for one of the individuals (the best one by default). The detailed statistics for this individual are written in\\ \verb?analysis-generationGENER/robustness-singleindiv-details-gGENER-iINDEX-rRANK.out?, with one line per simulated child of this particular individual.
+
+Usage: \verb?aevol_misc_robustness -g GENER [-n NBCHILDREN] [-r RANK | -i INDEX]?
+
+If neither index nor rank are specified, the program computes the detailed statistics for the best individual of generation \verb?GENER?.
+
+
+\subsection{aevol\_misc\_lineage}
+\label{sect:lineage}
+The \verb?lineage? tool allows for the reconstruction of the lineage of a given individual. It requires the phylogenetic tree to be recorded during the evolutionnary run (see the \verb?TREE_MODE? parameter). Using this phylogenetic tree, it will produce a binary file containing the whole evolutionary history of any given individual, \emph{i.e.} for each of its ancestors, which organism in the previous generation it is an offspring of, and the list of mutations that occured during replication. This file will be named \emph{e.g.} \\\verb?lineage-b000000-e050000-i999-r1000.ae? which means we retraced the evolutionary history of the organism with rank $1,000$ (that had the index $999$) at generation $50,000$ and that its history was retraced all the way down to generation $0$. This file is not readable in a text editor, it is meant to be used by other programs like \verb?ancstats?, \verb?fixed_mutations? or \verb?gene_families? (see below).
+
+Usage: \verb?aevol_misc_lineage [-i index | -r rank] [-b gener1] -e gener2?
+
+If neither index nor rank are specified, the program creates the EPS files of the best individual of generation \verb?gener2?.
+
+
+\subsection{aevol\_misc\_ancstats}
+\label{sect:ancstats}
+The \verb?ancstats? tool issues the ``statistics'' for the line of descent of a given individual (providing its lineage file, see section \ref{sect:lineage}). It will produce a set of files similar to those created in the \verb?stats? directory during the simulation but regarding the successive ancestors on the provided lineage, instead of the best organism of each generation. These files are placed in the \verb?stats/ancstats? directory. The program works by loading the initial genome at the beginning of the lineage, and then by replaying each mutation recorded in the lineage file. Environmental variations are also replayed exactly as they occured during the main run.
+
+Usage: \verb?ae_misc_ancstats [-c | -n] [-t tolerance] -f lineage_file?
+
+With the option \verb?-c? or \verb?--fullcheck? enabled, the program will check that the rebuilt genome sequence and the replayed environment are correct every \verb?<BACKUP_STEP>? generations, by comparing them to the data stored in the backups in the \verb?populations? and \verb?environment? directories. The default behaviour is faster as it only performs these checks at the final generation only. The option \verb?-n? or \verb?--nocheck? diasbales genome sequence checking completely. Although it makes the program faster, it is not recommended. The option \verb?-t tolerance? is useful when \verb?ancstats? in run on computer different from the one that performed the main evolutionary run: In this case, differences in compilators can lead to small variations in the computation of floating-point numbers. The tolerance specified with this option is used to decide whether the replayed environment is sufficienlty close to the one recorded during the main run in the \verb?environment? directory.
+
+
+
+
+\subsection{aevol\_misc\_fixed\_mutations}
+\label{sect:ancstats}
+The \verb?fixed_mutations? tool issues the detailed list of mutations that occurred in the lineage of a given individual (providing its lineage file, see section \ref{sect:lineage}). This text file is placed in the \verb?stats? directory. The program works by loading the initial genome at the beginning of the lineage, and then by replaying each mutation recorded in the lineage file. Environmental variations are also replayed exactly as they occured during the main run. The output file indicates, for each mutation, at which generation it occurred, which type of event it was (point mutation, small insertion, inversion...), where it occurred on the chromosome and how many genes (actually how many coding RNAs) where affected. More details are given in the first lines of the file itself.
+
+Usage: \verb?ae_misc_fixed_mutations [-c | -n] [-t tolerance] -f lineage_file?
+
+With the option \verb?-c? or \verb?--fullcheck? enabled, the program will check that the rebuilt genome sequence and the replayed environment are correct every \verb?<BACKUP_STEP>? generations, by comparing them to the data stored in the backups in the \verb?populations? and \verb?environment? directories. The default behaviour is faster as it only performs these checks at the final generation. The option \verb?-n? or \verb?--nocheck? disables genome sequence checking altogether. Although it makes the program faster, it is not recommended. The option \verb?-t tolerance? is useful when \verb?fixed_mutations? is run on computer different from the one that performed the main evolutionary run: In this case, differences in compilators can lead to small variations in the computation of floating-point numbers. The tolerance specified with this option is used to decide whether the replayed environment is sufficienlty close to the one recorded during the main run in the \verb?environment? directory.
+
+
+
+\subsection{aevol\_misc\_gene\_families}
+\label{sect:ancstats}
+The \verb?gene_families? tool issues the detailed history of each gene family on the lineage of a given individual (providing its lineage file, see section \ref{sect:lineage}). A gene family is defined here as a set of coding sequences that arised by duplications of a single original gene. The original gene, called the root of the family, can either be one of the genes in the initial ancestor, or a new gene created from scratch (for example by a local mutation that transformed a non-coding RNA into a coding RNA). The history of gene duplications, gene losses and gene mutations in each gene family is represented by a binary tree. The program starts by loading the initial genome at the beginning of the lineage and by tagging each gene in this initial genome. Each of these initial genes is marked as the root of a gene family. Then, each mutation recorded in the lineage file is replayed and the fate of all tagged genes is followed and recorded in their respective families. When a gene is duplicated, the corresponding node in one of the gene trees becomes an internal node, and two children nodes are added to it, representing the two gene copies. When a gene sequence is modified, the mutation is recorded in its corresponding node in one of the gene trees. When a gene is lost, the corresponding node in one of the gene trees is labelled as lost. When a new gene appears from scratch, i.e. not by gene duplication, it becomes the root of a new gene tree. Environmental variations are also replayed exactly as they occured during the main run.
+
+When all mutations have been replayed, several output files are written in a directory called \verb?gene_trees?. Two general text files are produced. The file called \verb?gene_tree_statistics.txt? contains general data on each gene family, like its creation date, its extinction date, or how many nodes it contained. The file called \verb?nodeattr_tabular.txt? contains information about each node of each gene tree, like when it was duplicated or lost or how many mutations occurred on its branch. In addition, for each gene tree, two text files are generated: a file called \verb?genetree******-topology.tre? contains the topology of the gene tree in the Newick format, and a file called \verb?genetree******-nodeattr.txt? that contains the list of events that happened to each node in the tree file, before it was either duplicated or lost.
+
+Usage: \verb?ae_misc_gene_families [-c | -n] [-t tolerance] -f lineage_file?
+
+With the option \verb?-c? or \verb?--fullcheck? enabled, the program will check that the rebuilt genome sequence and the replayed environment are correct every \verb?<BACKUP_STEP>? generations, by comparing them to the data stored in the backups in the \verb?populations? and \verb?environment? directories. The default behaviour is faster as it only performs these checks at the final generation only. The option \verb?-n? or \verb?--nocheck? diasbales genome sequence checking completely. Although it makes the program faster, it is not recommended. The option \verb?-t tolerance? is useful when \verb?gene_families? is run on computer different from the one that performed the main evolutionary run: In this case, differences in compilators can lead to small variations in the computation of floating-point numbers. The tolerance specified with this option is used to decide whether the replayed environment is sufficienlty close to the one recorded during the main run in the \verb?environment? directory.
+
+
+
+\clearemptydoublepage
+
+
+
+
+
+

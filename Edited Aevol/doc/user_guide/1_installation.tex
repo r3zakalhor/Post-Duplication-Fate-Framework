@@ -1,0 +1,112 @@
+\chapter{Installation}
+\label{chap:install}
+
+
+\vspace{5mm}
+
+\aevol{} can run on Linux and on MacOS X.
+
+\section{Linux users}
+\label{sec:linux}
+
+\subsection{Pre-built packages}
+\aevol{} is available as a deb package but it is still in the ``testing'' repositories. You should be able to \verb?apt-get install aevol? soon.
+
+\aevol{} should soon be available as an rpm package.
+
+
+\subsection{Installation from Source}
+\subsubsection{Required Dependencies}
+\begin{myList} 
+\item \textbf{Build Tools}.
+\\\verb?apt-get install build-essential? or \verb?yum install gcc-c++?.
+\item \textbf{Compression library}.
+\aevol{} compresses most of the data it uses.\\\verb?apt-get install zlib1g-dev? or \verb?yum install zlib-devel?.
+\end{myList}
+
+\subsubsection{Optional Dependencies}
+\begin{myList} 
+\item \textbf{X libraries}.
+\aevol{} uses the X11 library for the graphical outputs.\\\verb?apt-get install libx11-dev? or \verb?yum install libX11-devel?.
+
+Note, however, that \aevol{} can be compiled without graphical outputs, and hence no need for X libraries, by typing  \verb?./configure --without-x?  instead of  \verb?./configure? (see installation instructions below for more information). This option is useful if you want to run \aevol{} on a computer cluster, for example.
+\end{myList}
+
+\subsubsection{Installation Instructions}
+Download the latest release of \aevol{} at \url{http://aevol.fr/download/} and save it to a directory of your choice.
+Open a terminal and use the cd command to navigate to this directory.
+Then follow the steps below to extract the files and build the executables:
+
+\begin{verbatim}
+	tar zxf aevol-VERSION.tar.gz
+	cd aevol-VERSION
+	./configure
+	make
+\end{verbatim}
+
+If you have administration privileges, you can finally make the \aevol{} programs available to all users on the computer by typing:
+\begin{verbatim}
+	sudo make install
+\end{verbatim}
+
+If you don't have administration privileges, you may still install \aevol{} ``locally'' by doing the following: 
+\begin{verbatim}
+	./configure --prefix=/install/path
+	make
+	make install
+\end{verbatim}
+where \verb?/install/path? is a directory where you have write permission. Don't forget to add \verb?/install/path? to your \verb?PATH? environment variable.
+
+
+
+\section{Mac users}
+\label{sec:mac}
+
+\subsection{Pre-built packages}
+This option is not available yet for mac users.
+
+
+\subsection{Installation from Source}
+\subsubsection{Required Dependencies}
+\begin{myList} 
+\item \textbf{C++ command-line compiler}. Mac users should have a  command-line C++ compiler like g++ or clang installed. One easy way to get it is to install XCode (freely downloadable from the App Store), to start XCode and to install the Command Line Tools package from the menu XCode / Preferences / Downloads / tab `` Components''. Alternatively, you can also install the Command Line Tools package for Xcode without installing Xcode itself, by downloading it from Apple's developer site (free registration required) and search for ``Command Line Tools''.
+\item \textbf{Compression library}. \aevol{} compresses most of the data it uses using the zlib1g library. This library is already included as part of Mac OS X so there is no need to install it. 
+\end{myList}
+\subsubsection{Optional Dependencies}
+\begin{myList} 
+\item \textbf{X libraries}. For the graphical outputs, Mac users should also have X11 installed. X11 is not included with Mac OS X, but X11 server and client libraries for OS X are available from the XQuartz project (\url{http://xquartz.macosforge.org}). You will need to log out and log in after the installation to have X11 properly setup. Note, however, that \aevol{} can be compiled without graphical outputs, and hence no need for X libraries, by typing  \verb?./configure --without-x?  instead of  \verb?./configure?  (see below). This option is useful if you want to run \aevol{} on a computer cluster, for example.
+\end{myList}
+
+\subsubsection{Installation Instructions}
+Download the latest release of \aevol{} at \url{http://aevol.fr/download/} and save it to a directory of your choice.
+Open a terminal and use the cd command to navigate to this directory.
+Then follow the steps below to extract the files and build the executables:
+
+\begin{verbatim}
+	tar zxf aevol-VERSION.tar.gz
+	cd aevol-VERSION
+	./configure
+	make
+\end{verbatim}
+
+If you have administration privileges, you can finally make the \aevol{} programs available to all users on the computer by typing:
+\begin{verbatim}
+	sudo make install
+\end{verbatim}
+
+If you don't have administration privileges, you may still install \aevol{} ``locally'' by doing the following: 
+\begin{verbatim}
+	./configure --prefix=/install/path
+	make
+	make install
+\end{verbatim}
+where \verb?/install/path? is a directory where you have write permission. Don't forget to add \verb?/install/path? to your \verb?PATH? environment variable.
+
+
+\clearemptydoublepage
+
+
+
+
+
+

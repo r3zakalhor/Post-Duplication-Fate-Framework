@@ -1,0 +1,49 @@
+./"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_misc_compute_pop_stats \-h
+|
+.B \-\-help
+.br
+.B aevol_misc_compute_pop_stats \-V
+|
+.B \-\-version
+.br
+.B aevol_misc_compute_pop_stats \fR[\fB\-i\fI INDEX\fR | \fB\-r\fI RANK\fR] \fR[\fB\-b\fI GENER1\fR] \fB\-e\fI GENER2
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_misc_compute_pop_stats
+issues population and replication statistics for each available backup from GENER1 to GENER2. These statistics are written in files global_pop_stats.out and stats/pop_stats/*.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+print help, then exit
+.TP
+.B \-V, \-\-version
+print version number, then exit
+.HP
+.B \-i, \-\-index
+.I  INDEX
+.br
+specify the index (ID in current generation) of the individual whose replication statistics should be outputted
+.HP
+.B \-r, \-\-rank
+.I  RANK
+.br
+specify the rank of the individual whose replication statistics should be outputted
+.HP
+.B \-b, \-\-begin
+.I  GENER
+.br
+specify the first generation for which the statistics should be computed
+.HP
+.B \-e, \-\-end
+.I  GENER
+.br
+specify the last generation for which the statistics should be computed
+.SH "SEE ALSO"
+.B ae_misc_lineage, aevol_create, aevol_modify, aevol_propagate, aevol_run

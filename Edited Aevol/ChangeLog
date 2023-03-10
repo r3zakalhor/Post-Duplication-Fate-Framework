@@ -1,0 +1,379 @@
+New in 8.0:
+ - MPI Support:
+    - Fully reproduceable MPI execution with sequential and memory shared parallel version (OpenMP)
+    - Can be mixed up with OpenMP version: MPI+OpenMP
+    - No (Explicit) Synchronization (i.e. no MPI Barrier). Should be very scalable.
+    - RAevol (dynamic and static environment) and Aevol compatible
+    - Lineage/Tree are fully supported
+    
+ - RAevol should be fixed
+ - A lot of vectorization works on motif searchs function
+ - Validated discrete fuzzy (against the continious fuzzy). WARNING : never compare results of discrete and continious fuzzy
+ - A lot of memory leaks fixes
+ - A lot of bug fixes
+ - New differential search algorithm that does the diff for all metadatas (not only promoters all the metadatas Promoters/RNAs/Genes)
+
+New in 4.4:
+
+* aevol_create now gives a name to the created strain. It can be defined using
+  the STRAIN_NAME keyword in the param file. If this keyword is not present, a
+  default one will be generated.
+
+* New option -o or --out in aevol_create
+  Allows one to create the experiment in any location.
+
+* aevol_propagate can now reset the PRNGs (random generators) with the new
+  general option -S (affecting all random processes) or the new more specific
+  options -m, -s, -t, -e and -n (each affects a single random process, see man
+  page).
+
+* The environmental target can be defined by a list of custom points using the
+  ENV_ADD_POINT keyword in the parameter file. This is an alternative to the
+  usual way, where it is defined as a sum of gaussians. Note, however, that
+  environmental variation is possible only for the "gaussian" way.
+
+* The aevol_misc_fixed_mutations program now outputs the number of genes
+  affected by each mutation. More precisely, three new columns are produced:
+    - the number of coding RNAs possibly disrupted by a switch, a small indel
+      or a rearrangement breakpoint,
+    - the number of coding RNAs entirely included in a rearranged segment,
+    - in the case of a transfer by replacement, the number of genes that were
+      entirely included in the replaced segment.
+  This program does not work yet if plasmids are allowed.
+
+* The programs aevol_misc_lineage, aevol_misc_ancstats,
+  aevol_misc_fixed_mutations, aevol_misc_gene_families now work when the
+  environment was changed at some point by aevol_modify.
+
+* The fitness proportionate selection scheme now works with spatial structure
+
+* In aevol_modify, it is now possible to replace a population by clones of the
+  best individual. To do so, add the line CLONE_BEST_NO_TREE or
+  CLONE_BEST_AND_CHANGE_TREE in the parameter file you supply to aevol_modify.
+  Use CLONE_BEST_AND_CHANGE_TREE if your simulation campaign uses the
+  genealogical trees, that is to say if you set RECORD_TREE to true. Otherwise,
+  use CLONE_BEST_NO_TREE.
+
+* Manual pages were added for aevol_misc_lineage, aevol_misc_ancstats,
+  aevol_misc_fixed_mutations, aevol_misc_gene_families, aevol_misc_create_eps,
+  aevol_misc_view_generation.
+
+* New option (-c and -p) in aevol_create. Allows one to load a chromosome (and
+  possibly plasmid) from a text file. If -p is used, ALLOW_PLASMIDS must be set
+  to true and -c must also be used. If -c is used and ALLOW_PLASMIDS is set to
+  true, -p must also be used.
+
+* Add a script (src/misc/movies.py) to produce a movie from an aevol simulation
+  with dumps activated.
+  run ./src/misc/movies.py -h for help.
+  Needs ffmpeg in path.
+
+* The aevol_misc_gene_families program issues the detailed history of each gene
+  family on the lineage of a given individual (providing its lineage file).
+  A gene family is defined here as a set of coding sequences that arised by
+  duplications of a single original gene. The original gene, called the root of
+  the family, can either be one of the genes in the initial ancestor, or a new
+  gene created from scratch (for example by a local mutation that transformed a
+  non-coding RNA into a coding RNA). The history of gene duplications, gene
+  losses and gene mutations in each gene family is represented by a binary tree.
+  The program starts by loading the initial genome at the beginning of the
+  lineage and by tagging each gene in this initial genome. Each of these initial
+  genes is marked as the root of a gene family. Then, each mutation recorded in
+  the lineage file is replayed and the fate of all tagged genes is followed and
+  recorded in their respective families. When a gene is duplicated, the
+  corresponding node in one of the gene trees becomes an internal node, and two
+  children nodes are added to it, representing the two gene copies. When a gene
+  sequence is modified, the mutation is recorded in its corresponding node in
+  one of the gene trees. When a gene is lost, the corresponding node in one of
+  the gene trees is labelled as lost. When a new gene appears from scratch, i.e.
+  not by gene duplication, it becomes the root of a new gene tree. Environmental
+  variations are also replayed exactly as they occured during the main run.
+  When all mutations have been replayed, several output files are written in a
+  directory called gene_trees. Two general text files are produced. The file
+  called gene_tree_statistics.txt contains general data on each gene family,
+  like its creation date, its extinction date, or how many nodes it contained.
+  The file called nodeattr_tabular.txt contains information about each node of
+  each gene tree, like when it was duplicated or lost or how many mutations
+  occurred on its branch. In addition, for each gene tree, two text files are
+  generated: a file called genetree******-topology.tre contains the topology of
+  the gene tree in the Newick format, and a file called
+  genetree******-nodeattr.txt that contains the detailed list of events that
+  happened to each node in the tree file, before it was either duplicated or
+  lost.
+
+  Usage: ae_misc_gene_families [-c | -n] [-t tolerance] -f lineage_file
+
+
+Changes in 4.4:
+
+* In the input file containing the parameters for aevol_create, the
+  SELECTION_SCHEME and SELECTION_PRESSURE keywords have been merged. Only the
+  SELECTION_SCHEME keyword is allowed, it sets both the selection scheme itself
+  and the selection pressure (if any).
+
+  e.g.
+    SELECTION_SCHEME        fitness
+    SELECTION_PRESSURE      750
+  becomes
+    SELECTION_SCHEME        fitness   750
+
+* The default value of duplication_rate, deletion_rate, translocation_rate and
+  inversion_rate is now 1e-5 (instead of 5e-5 before).
+
+* The name of binaries no longer depend on configure-time options.
+  e.g. aevol_run is no longer called aevol_run_X11 when x output is enabled.
+  WARNING: If you build several times with different options enabled, you will
+  need to make clean after reconfiguring.
+
+* Changed the way the min/max total genome size and the min/max genetic unit
+  size are handled. If you do not use plasmids (ALLOW_PLASMIDS not set, or equal
+  to false), replace INITIAL_GENOME_LENGTH by CHROMOSOME_INITIAL_LENGTH in
+  param.in, and everything will work as it did before. If you do use plasmids,
+  you can now define values for the PLASMID_INITIAL_LENGTH, the
+  PLASMID_MINIMAL_LENGTH, the PLASMID_MAXIMAL_LENGTH, the
+  CHROMOSOME_MINIMAL_LENGTH and the CHROMOSOME_MAXIMAL_LENGTH. In all cases,
+  MIN_GENOME_LENGTH and MAX_GENOME_LENGTH now control the total genome size
+  (i.e., chromosome + plasmids) instead of just controlling the chomosome size.
+
+* In aevol_misc_create_eps and aevol_misc_robustness, option -e or --end is now
+  -g or --gener for consistency reasons.
+
+* In aevol_modify, the transfer rates are now stored in the mutation parameters
+  of each individual, they are not global parameters anymore.
+
+* Removed the historical dependencies to libXi and libXmu, and modified the
+  way compilation flags are handled according to GNU best practices.
+
+* Updated post-treatment template and added it to the compiled sources (so that
+  one can make a new post-treatment with no need for autotools).
+
+
+Bugs fixed in 4.4:
+
+* Ctrl-Q was not quitting anymore, it does now. Similarly, switching display
+  on/off wasn't working any more, this is now fixed.
+
+* Specific "chromosome" and "plasmids" stat files were issued regardless of
+  whether plasmids were allowed or not. Now they are issued only when plasmids
+  are allowed.
+
+* When recording stats for each genetic unit, total metabolic fitness and
+  metabolic error were reported instead of "by-genetic-unit" metabolic fitness
+  and metabolic error. This is now corrected.
+
+* Translocations between different genetic units were not reported in logs when
+  tree recording was disabled. This is now fixed.
+
+* In aevol_create, init_method always set to at least ONE_GOOD_GENE | CLONE,
+  regardless of what was written in the parameter file. This is now fixed.
+
+* In aevol_misc_lineage, there was a segmentation fault when the population was
+  spatially structured. This is now corrected.
+
+* In aevol_misc_create_eps, there was a systematic segmentation fault since
+  version 4.0. This is now fixed. This program also produces better scaled
+  figures for the triangles.
+
+* In aevol_misc_fixed_mutations, the fitness impact of some mutations was wrong
+  if there was some environmental variation. This is now corrected.
+
+* In aevol_modify, correction of a segmentation fault on change of population
+  size.
+
+* In aevol_propagate, the input directory option (-i) is now working. This
+  program does not write stats anymore, as it should...
+
+* The method ae_list::get_object() returned a type T* instead of T&. The bugged
+version of this method was never used, hence the behavior of the simulations is
+unaffected.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New in 4.3
+
+* The post-treatment view_generation is now functional for aevol (with or
+  without space), but not for R-aevol yet. This post-treatment is available
+  if X was enabled at the "configure" step, which is the case by default.
+
+* Lateral transfer by replacement can now be constrained to replace a segment
+  of roughly the same size and sequence as the one given by the donor, to
+  simulate allelic recombination. To use this kind of transfer by replacement
+  rather than the usual one (where the donor and replaced segments only have
+  similar sequences at their extremities), add the line
+  "REPL_TRANSFER_WITH_CLOSE_POINTS true" in the param.in file. Specifically, a
+  small region of high similarity is searched for between the donor chromosome
+  and the receiving chromosome. Then this initial alignment is extended until
+  there is no sequence similarity anymore or until a random event stops the
+  extension -- at each extension step, there is a probability called
+  REPL_TRANSFER_DETACH_RATE to stop the extension even if there is some
+  sequence similarity. Below is an example of how to write the param.in file
+  to try for a lateral transfer by replacement in 50% of the reproductions,
+  with the constraint that the replaced segment must have roughly the same
+  size and sequence as the donor segment (the last six parameters are for the
+  alignment search):
+
+    WITH_TRANSFER                     true
+    TRANSFER_REPL_RATE                0.5
+    REPL_TRANSFER_WITH_CLOSE_POINTS   true
+    REPL_TRANSFER_DETACH_RATE         0.3
+    NEIGHBOURHOOD_RATE                1e-1
+    ALIGN_FUNCTION                    SIGMOID 0 40
+    ALIGN_W_ZONE_H_LEN                50
+    ALIGN_MAX_SHIFT                   20
+    ALIGN_MATCH_BONUS                 1
+    ALIGN_MISMATCH_COST               2
+
+* Lateral transfer events by insertion or replacement can be logged during the
+  main evolutionary run by adding the line "LOG TRANSFER" in the param.in file.
+  They will be written in an output file called log_transfer.out.
+
+
+* Post-treatments lineage and ancstats can replay lateral transfer events.
+  To simplify the post-treatments, lateral transfer events are treated as
+  mutations and rearrangements. They are managed in ae_dna and ae_mutation
+  and no more in ae_selection. If RECORD_TREE is set to true and if
+  TREE_MODE is set to normal in param.in, the transfer events will be saved
+  in the tree files with the transferred sequence.
+
+* Examples are now provided in the "examples" dir.
+
+
+Changes in 4.3
+
+* Replaced most of the --with-xxxxx configure script options with
+  --enable-xxxxx. Supported options for the configure script are now [default
+  value in brackets]:
+
+     --with-x                          [yes]
+     --enable-optim                    [enabled]
+     --enable-raevol                   [disabled]
+     --enable-normalized-fitness       [disabled]
+     --enable-mtperiod=period          [disabled]
+     --enable-trivialjumps=jumpsize    [disabled]
+     --enable-devel                    [disabled]
+     --enable-debug                    [disabled]
+     --enable-in2p3                    [disabled]
+
+* Post-treatment executables are installed into ${prefix}/bin rather than
+  ${prefix}/libexec (we realized it wasn't a good idea after all...).
+
+
+Bugs fixed in 4.3:
+
+* Bug #289: Missing lines in the header of stats_bp_best.out
+
+* Bug #293: Initialisation with a clonal population:
+  Individuals in the first generation had a rank equal to -1.
+
+* Bug #294: Problems in constructor and copy method of ae_vis_a_vis
+
+* Bug #300: Missing length data in the tree files for the rearrangements
+  (NORMAL tree mode).
+
+* aevol_create produced a segmentation fault if param.in did
+  not contain a line specifying ENV_AXIS_FEATURES. Now this parameter can be
+  omitted, in which case the default value would be METABOLISM for the whole
+  x-axis.
+
+* Correction of the default value for the initialisation method, which was 0
+  instead of "ONE_GOOD_GENE | CLONE".
+
+* Correction of memory leaks in the constructor of ae_stats and in the
+  destructor of ae_mutation for some mutations.
+
+* Correction of a bug in the lineage post-treatment, which would fail after
+  ~1.000 tree files were loaded because the files were never closed.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New in 4.2
+
+* Post-treatment executables are now prefixed with aevol_misc_ and are installed
+  into ${prefix}/libexec rather than ${prefix}/bin
+
+
+Bugs fixed in 4.2
+
+* Bugs #281 and #282: Bug in gene position
+
+  This bug happenned whenever a promoter at the end of the genome on the LEADING
+  strand transcribed a gene that was at the beginning of the genome (or a
+  promoter at the beginning on the LAGGING strand transcribed a gene that was at
+  the end of the genome)
+
+  The position of the protein was then out of the genome bound
+  (> genome len when LEADING or < 0 when LAGGING)
+  If this gene was also transcribed on another rna that didn't satisfy the above
+  constraint, it wasn't recognized as the same gene.
+
+  Either bugs had no effect whatsoever on the fitness and hence on the outcome
+  of evolution.
+  It could however lead to erroneous statistics regarding the number of RNAs a
+  gene is transcribed onto.
+
+* Bug #284: Undefined behavior when there is no terminator in the genome
+
+  After a big deletion, it can happen that a genetic unit does not contain any
+  teminator anymore. There can however be a promoter somewhere. The behavior of
+  the program was different depending on the strand where the promoter was. If
+  it was on the lagging strand, the RNA was supposed to be as long as the whole
+  genetic unit, and could carry coding sequences. If the promoter was on the
+  leading strand, the length of the RNA was left as is, that is, either to -1
+  for generation 0, or to the length  inherited from the parent, which made no
+  sense anymore once the terminator has disappeared.
+
+  We decided that it is best that no RNA is produced in this case
+  (no terminator = incomplete gene, assumed to be non-functional).
+
+* Bug #285: "Barrier" events logged twice
+
+  When a deletion would cause the genetic unit to be smaller than the size of a
+  promoter, the mutation was not performed and (if the BARRIER option was chosen
+  in the logs), and the event was logged twice.
+  This kind of mutations is now performed normally (and hence no log entry
+  should be issued) as long as it doesn't make the genetic unit smaller than the
+  minimum length specified (which is independent of the promoter size).
+
+
+* Bug #286: Log files incorrectly regenerated when resuming a run
+
+  When resuming a run, log files are regenerated by copying the header of the
+  former log file and its entries until the generation chosen to resume the run.
+  During this copy, (1) the first entry was skipped, and (2) the entries for the
+  resuming generation were copied, and thus ended up duplicated.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New in 4.1
+
+* Ported the "extract" post-treatment from version 3.
+  This programs can extract from a backup the sequence and the list of all
+  proteins for every individual in an easily parsable text-based format.
+
+* aevol_modify allows to modify the axis features and segmentation as well as
+  secretion properties
+
+* Added man pages for the 4 main executables
+
+
+Bugs fixed in 4.1
+
+* Supressed memory leaks
+
+* Introduced in 4.0: Major bias in the spatial competition caused by a bad
+  update.
+
+* In aevol_modify, changing environment gaussians was causing a segfault when
+  NOT using environmental variations.
+
+* Bug #279: make install no longer fails with error
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+New in 4.0
+
+* The main aevol executable has been split into 4:
+  - aevol_create:     create an experiment with setup as specified in param_file
+  - aevol_run:        run a simulation
+  - aevol_modify:     modify an experiment as specified in param_file
+  - aevol_propagate:  create a fresh copy of the experiment

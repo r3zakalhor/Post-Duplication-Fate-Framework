@@ -1,0 +1,80 @@
+\"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_propagate \-h
+or
+.B \-\-help
+.br
+.B aevol_propagate \-V
+or
+.B \-\-version
+.br
+.B aevol_propagate \fR[\fB\-v\fR]  \fR[\fB\-g\fI GENER\fR]  \fR[\fB\-i\fI INDIR\fR] \fR[\fB\-o\fI OUTDIR\fR] \fR[\fB\-S\fI GENERALSEED\fR]
+.br
+.B aevol_propagate \fR[\fB\-v\fR]  \fR[\fB\-g\fI GENER\fR]  \fR[\fB\-i\fI INDIR\fR] \fR[\fB\-o\fI OUTDIR\fR] \fR[\fB\-s\fI SELSEED\fR]   \fR[\fB\-m\fI MUTSEED\fR]   \fR[\fB\-t\fI STOCHSEED\fR]   \fR[\fB\-e\fI ENVVARSEED\fR]   \fR[\fB\-n\fI ENVNOISESEED\fR]
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_propagate
+creates a fresh copy of the experiment as it was at the given generation. The generation number of the copy will be reset to 0. If you use aevol_propagate repeatedly to initialize several simulations, you should specify a different seed for each simulation, otherwise all simulations will yield exactly the same results. You can use the option -S to do so. In this case, the random drawings will be different for all random processes enabled in your simulations (mutations, stochastic gene expression, selection, migration, environmental variation, environmental noise). Alternatively, to change the random drawings for specific random processes only, do not use -S but the options -m, -s, -t, -e, -n (see below).
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+print help, then exit
+.TP
+.B \-V, \-\-version
+print version number, then exit
+.TP
+.B \-v, \-\-verbose
+be verbose
+.HP
+.B \-g, \-\-gener
+.I GENER
+.br
+specify generation number
+(default: that contained in file last_gener.txt, if any)
+.HP
+.B \-i, \-\-in
+.I INDIR
+.br
+specify input directory (default ".")
+.HP
+.B \-o, \-\-out
+.I OUTDIR
+.br
+specify output directory (default "./output")
+.HP
+.B \-S, \-\-general\-seed
+.I GENERALSEED
+.br
+specify an integer to be used as a seed for random numbers. If you use aevol_propagate repeatedly to initialize several simulations, you should specify a different	seed for each simulation, otherwise all simulations will yield exactly the same results. If you specify this general seed, random drawings will be different for all random processes enabled in your simulations (mutations, stochastic gene expression, selection, migration, environmental variation, environmental noise). To change the random drawings for a specific random process only, do not use -S but the options below.
+.HP
+.B \-s, \-\-sel\-seed
+.I SELSEED
+.br
+specify an integer as a seed for random numbers needed for selection and migration (if spatial structure is enabled).
+.HP
+.B \-m, \-\-mut\-seed
+.I MUTSEED
+.br
+specify an integer as a seed for random numbers needed for mutations.
+.HP
+.B \-t, \-\-stoch\-seed
+.I STOCHSEED
+.br
+specify an integer as a seed for random numbers needed for stochastic gene expression.
+.HP
+.B \-e, \-\-env\-var\-seed
+.I ENVVARSEED
+.br
+specify an integer as a seed for random numbers needed for environmental variation.
+.HP
+.B \-n, \-\-env\-noise\-seed
+.I ENVNOISESEED
+.br
+specify an integer as a seed for random numbers needed for environmental noise.
+.SH "SEE ALSO"
+.B aevol_create, aevol_run, aevol_modify

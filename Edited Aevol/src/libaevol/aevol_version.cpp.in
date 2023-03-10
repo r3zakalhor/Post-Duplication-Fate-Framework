@@ -1,0 +1,4 @@
+namespace aevol {
+char const *version_string = "@PROJECT_VERSION@ @CMAKE_BUILD_TYPE@"
+                             " " "(${AEVOL_REVISION})";
+}

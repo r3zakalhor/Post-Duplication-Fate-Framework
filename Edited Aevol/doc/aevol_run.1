@@ -1,0 +1,53 @@
+./"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_run \-h
+|
+.B \-\-help
+.br
+.B aevol_run \-V
+|
+.B \-\-version
+.br
+.B aevol_run \fR[\fB\-r\fI GENER\fR] \fR[\fB\-n\fI NB_GENER\fR] \fR[\fB\-tvwx\fR]
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_run
+run an aevol simulation.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+print help, then exit
+.TP
+.B \-V, \-\-version
+print version number, then exit
+.HP
+.B \-r, \-\-resume
+.I  GENER
+.br
+specify generation to resume simulation at (default 0)
+.HP
+.B \-n, \-\-nbgener
+.I NB_GENER
+.br
+specify number of generations to be run (default 1000)
+.TP
+.B \-t, \-\-text
+use text files instead of binary files when possible
+.TP
+.B \-v, \-\-verbose
+be verbose
+.TP
+.B \-w, \-\-wait
+pause after loading
+.TP
+.B \-x, \-\-noX
+don't display X outputs upon start
+.br
+send SIGUSR1 to switch X output on/off
+.SH "SEE ALSO"
+.B aevol_create, aevol_modify, aevol_propagate

@@ -1,0 +1,58 @@
+./"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_misc_extract \-h
+|
+.B \-\-help
+.br
+.B aevol_misc_extract \-V
+|
+.B \-\-version
+.br
+.B aevol_misc_extract \fR[\fB\-r\fI GENER\fR | \fB\-p\fI POP_FILE\fR] \fR[\fB\-t\fI PHEN_FILE\fR] \fR[\fB\-s\fI SEQ_FILE\fR] \fR[\fB\-g\fI NUM_GU\fR] \fR[\fB\-b\fR]
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_misc_extract
+extracts the genotype and/or data about the phenotype of individuals in the provided population and write them into text files easy to parse with e.g. matlab.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+print help, then exit
+.TP
+.B \-V, \-\-version
+print version number, then exit
+.HP
+.B \-r
+.I  GENER
+.br
+read generation GENER from a full aevol backup
+.HP
+.B \-p
+.I  POP_FILE
+.br
+read the population saved in population file POP_FILE
+.HP
+.B \-t
+.I  PHEN_FILE
+.br
+extract and save some infos about the phenotypes of the individuals to file PHEN_FILE
+.HP
+.B \-s
+.I  SEQ_FILE
+.br
+extract and save the sequences of the individuals to file SEQ_FILE
+.HP
+.B \-g
+.I  num_gu
+.br
+only treat this genetic unit (by default: treat all genetic units)
+.HP
+.B \-b
+.br
+only treat the best individual
+.SH "SEE ALSO"
+.B ae_misc_lineage, aevol_create, aevol_modify, aevol_propagate, aevol_run

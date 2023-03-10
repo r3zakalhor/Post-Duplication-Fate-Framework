@@ -1,0 +1,9 @@
+to compile Centralized vesion:
+g++ -std=c++11 CentralizedFateClassifier.cpp GeneTreeConstructor.h probabilitiescalculation.h -o CentralizedFateClassifier
+
+
+Then to use:
+./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000 (last generation)
+
+To help:
+./CentralizedFateClassifier -h

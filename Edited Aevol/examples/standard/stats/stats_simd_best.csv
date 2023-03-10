@@ -1,0 +1,2 @@
+Generation,pop_size,nb_clones,fitness,metabolic_error,amount_of_dna,nb_coding_rnas,nb_non_coding_rnas,nb_functional_genes,nb_non_functional_genes,nb_mut,nb_switch,nb_indels,nb_rear,nb_dupl,nb_del,nb_trans,nb_inv,dupl_rate,del_rate,trans_rate,inv_rate
+0,1024,0,1.11142e-13,0.029828,10541,50,18,151,12,0,0,0,0,0,0,0,0,0,0,0,0

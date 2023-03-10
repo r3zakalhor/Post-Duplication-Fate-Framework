@@ -1,0 +1,16 @@
+# Baseline configuration
+BasedOnStyle: LLVM
+
+# Aevol-specific directives
+AccessModifierOffset: -1
+AlignConsecutiveAssignments: true
+BinPackArguments: true # For function calls
+BinPackParameters: false # For function declarations
+DerivePointerAlignment: true
+IncludeBlocks: Regroup
+IndentPPDirectives: BeforeHash
+PenaltyReturnTypeOnItsOwnLine: 100
+ReflowComments: false
+SortIncludes: true
+SpaceBeforeRangeBasedForLoopColon: false
+SpacesBeforeTrailingComments: 2

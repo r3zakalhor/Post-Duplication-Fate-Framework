@@ -1,0 +1,46 @@
+\documentclass[english, a4paper, 12pt, onecolumn]{manual}
+
+
+
+\newcommand{\aevol}{\textsc{Aevol}}
+\newcommand{\raevol}{\textsc{R-Aevol}}
+
+
+
+%---- Debut du document ----
+\begin{document}
+\selectlanguage{english}
+
+%---- Page de titre en francais ----
+\input{frontmatter/titlepage}
+
+%\frontmatter
+
+\tableofcontents \markboth{Table of contents}{Table of contents}
+\clearemptydoublepage
+
+% \listoffigures \markboth{List of figures}{List of figures}
+% \clearemptydoublepage
+
+%\input{notations.tex}
+
+
+\setlength{\parskip}{1.2em}
+
+
+\input{0_introduction}
+
+\input{1_installation}
+
+% Merged with 3_using_aevol
+%\input{2_first_run}
+
+\input{3_using_aevol}
+
+%\input{backmatter/appendix1}
+
+\input{backmatter/appendix2}
+
+
+
+\end{document}

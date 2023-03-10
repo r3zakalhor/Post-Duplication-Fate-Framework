@@ -1,0 +1,15 @@
+# ---------------------------------------------
+#  Average gene statistics over the population 
+# ---------------------------------------------
+# 
+#  1. Generation
+#  2. Number of coding RNAs (at least one gene on RNA)
+#  3. Number of non-coding RNAs
+#  4. Average size of coding RNAs (at least one gene on RNA)
+#  5. Average size of non-coding RNAs
+#  6. Number of functional genes
+#  7. Nb of non functional genes
+#  8. Average size of functional genes
+#  9. Average size of non functional genes (WARNING : bias towards 0)
+# 
+0 50 19 350.140000 62.052632 118 9 62.211864 20.666667 

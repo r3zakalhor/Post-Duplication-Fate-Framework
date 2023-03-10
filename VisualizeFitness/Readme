@@ -1,0 +1,7 @@
+To visualize fitness curves, use:
+python3 VisualizeFitness.py param.in color (for example blue)
+The output will be in Fitness curves.pdf
+
+Also, two different fitness curves can be compared in one plot:
+python3 VisualizeFitness.py firstparam.in color1 secondparam.in color2
+The output will be in Fitness curves.pdf

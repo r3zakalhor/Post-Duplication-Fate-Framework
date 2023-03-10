@@ -1,0 +1,171 @@
+###################################
+#         AEVOL PARAMATERS        #
+###################################
+
+##### 1. Initial setup ############
+STRAIN_NAME             basic_example
+SEED                    5156165
+INIT_POP_SIZE           1024
+WORLD_SIZE              32 32
+INIT_METHOD             ONE_GOOD_GENE CLONE
+CHROMOSOME_INITIAL_LENGTH   5000
+FUZZY_FLAVOR   3
+
+##### 2. Selection ################
+SELECTION_SCHEME        fitness_proportionate   750
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     5e-5
+SMALL_INSERTION_RATE    5e-5
+SMALL_DELETION_RATE     5e-5
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+WITH_ALIGNMENTS         false
+DUPLICATION_RATE        5e-5
+DELETION_RATE           5e-5
+TRANSLOCATION_RATE      5e-5
+INVERSION_RATE          5e-5
+
+##### 7. Recording ################
+BACKUP_STEP             1000
+TREE_STEP		1000
+RECORD_TREE             true
+MORE_STATS              false
+
+####################################################################################
+#                                    Regulation
+####################################################################################
+HILL_SHAPE_N                   4 
+HILL_SHAPE_THETA               0.5
+DEGRADATION_RATE               1
+NB_DEGRADATION_STEP               10
+INDIVIDUAL_EVALUATION_AGES    1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+#EVAL_STEP 1 à trouver
+BINDING_ZEROS_PERCENTAGE       0.75
+#permit to choose wheter we want to run the simulation with a random binding matrix or not
+RANDOM_BINDING_MATRIX          false
+WITH_HEREDITY                  false
+PROTEIN_PRESENCE_LIMIT         1e-2
+NB_INDIV_AGE 32
+
+
+
+
+
+
+####################################################################################
+#                                   Environments
+####################################################################################
+############ Target function ##########
+ENV_SAMPLING          300
+MAX_TRIANGLE_WIDTH      0.033333333
+ENV_VARIATION switch_in_a_list -1.0
+
+
+NB_ENVIRONMENTS 16
+ENV_ADD_GAUSSIAN  1  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  1  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  1  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  1  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  2  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  2  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  2  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  2  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  3  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  3  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  3  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  3  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  4  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  4  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  4  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  4  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  5  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  5  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  5  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  5  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  6  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  6  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  6  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  6  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  7  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  7  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  7  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  7  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  8  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  8  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  8  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  8  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  9  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  9  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  9  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  9  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  10  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  10  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  10  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  10  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  11  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  11  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  11  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  11  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  12  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  12  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  12  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  12  0.5   0.8   0.05
+ENV_ADD_GAUSSIAN  13  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  13  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  13  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  13  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  14  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  14  0.5   0.4   0.05
+ENV_ADD_GAUSSIAN  14  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  14  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  15  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  15  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  15  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  15  0.5   0.85  0.05
+ENV_ADD_GAUSSIAN  16  0.5   0.25  0.05
+ENV_ADD_GAUSSIAN  16  0.5   0.45  0.05
+ENV_ADD_GAUSSIAN  16  0.5   0.65  0.05
+ENV_ADD_GAUSSIAN  16  0.5   0.85  0.05
+
+
+####################################################################################
+#                              List of signals
+####################################################################################
+CREATE_SIGNAL h0 w0 h1 m1 w0 h1 m0 h0 h1 w0 h0 m1 h1 h1 m1 m0 h0 w0 h1 m1 w0 h1 m0 h0 h1 w0 h0 m1 h1 h1 m1 m0 h1 m0 m1
+CREATE_SIGNAL m0 h0 m1 h1 m1 w0 m0 m1 m0 h0 m1 h1 w0 h0 h0 h1 m1 m0 h1 w0 h1 h0 m1 h1 m0 w0 w0 m0 m1 w0 w0 h1 h0 w0 h1 h0 h0 m0 h0 w0 h0 m1 m0 w0 h1 w0 w0 h1 m0
+CREATE_SIGNAL h0 h0 h0 w0 m0 m1 m0 h1 h0 m0 h0 m1 h1 w0 h1 h0 m1 h1 m0 w0 w0 m0 w0 h0 h1 m1 w0 m0 m1 m0 w0 h1 h0 m0 h0 m1 h1 w0 h0 w0 m0 m1 m0 w0 h1 h0 w0 w0 h1
+CREATE_SIGNAL h1 h1 m0 w0 w0 h1 m1 h1 h1 m1 m0 w0 m1 m0 m0 w0 m0 h0 m0 h0 w0 h0 m0 h0 h1 m1 h0 h1 w0 h0 h1 m1 h1 m1 m0
+ENV_ADD_SIGNAL 2 1
+ENV_ADD_SIGNAL 3 2
+ENV_ADD_SIGNAL 4 3
+ENV_ADD_SIGNAL 5 4
+ENV_ADD_SIGNAL 6 1
+ENV_ADD_SIGNAL 6 2
+ENV_ADD_SIGNAL 7 1
+ENV_ADD_SIGNAL 7 3
+ENV_ADD_SIGNAL 8 1
+ENV_ADD_SIGNAL 8 4
+ENV_ADD_SIGNAL 9 2
+ENV_ADD_SIGNAL 9 3
+ENV_ADD_SIGNAL 10 2
+ENV_ADD_SIGNAL 10 4
+ENV_ADD_SIGNAL 11 3
+ENV_ADD_SIGNAL 11 4
+ENV_ADD_SIGNAL 12 1
+ENV_ADD_SIGNAL 12 2
+ENV_ADD_SIGNAL 12 3
+ENV_ADD_SIGNAL 13 1
+ENV_ADD_SIGNAL 13 2
+ENV_ADD_SIGNAL 13 4
+ENV_ADD_SIGNAL 14 1
+ENV_ADD_SIGNAL 14 3
+ENV_ADD_SIGNAL 14 4
+ENV_ADD_SIGNAL 15 2
+ENV_ADD_SIGNAL 15 3
+ENV_ADD_SIGNAL 15 4
+ENV_ADD_SIGNAL 16 1
+ENV_ADD_SIGNAL 16 2
+ENV_ADD_SIGNAL 16 3
+ENV_ADD_SIGNAL 16 4

@@ -1,0 +1,93 @@
+###################################
+#         AEVOL PARAMATERS        #
+###################################
+
+##### 1. Initial setup ############
+SEED                    7250909
+WORLD_SIZE              25 20
+INIT_POP_SIZE           500
+INIT_METHOD             ONE_GOOD_GENE CLONE
+CHROMOSOME_INITIAL_LENGTH  5000
+
+##### 2. Selection ################
+SELECTION_SCHEME        fitness   750
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     5e-6
+SMALL_INSERTION_RATE    5e-6
+SMALL_DELETION_RATE     1e-5
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+DUPLICATION_RATE        5e-5
+DELETION_RATE           5e-5
+TRANSLOCATION_RATE      5e-5
+INVERSION_RATE          5e-5
+
+##### 5. Population Structure #####
+
+##### 6. Target function ##########
+ENV_SAMPLING      300
+ENV_ADD_GAUSSIAN  0.5   0.2   0.05
+ENV_ADD_GAUSSIAN  0.5   0.6   0.05
+ENV_ADD_GAUSSIAN  0.5   0.8   0.05
+
+MAX_TRIANGLE_WIDTH  0.005
+
+##### 7. Recording ################
+RECORD_TREE             true
+TREE_STEP               50
+MORE_STATS              false
+DUMP_STEP               0
+BACKUP_STEP             100
+LOG                     BARRIER TRANSFER
+
+##### 8. Environment variation ####
+ENV_VARIATION           autoregressive_height_variation 0.05 5000 123840
+
+##### 9. Phenotypic axis ##########
+ENV_AXIS_FEATURES METABOLISM
+
+##### 10. Secretion ###############
+
+##### 11. Plasmids ################
+ALLOW_PLASMIDS                  false
+WITH_TRANSFER                   true
+TRANSFER_REPL_RATE              0.1
+REPL_TRANSFER_WITH_CLOSE_POINTS true
+REPL_TRANSFER_DETACH_RATE       0.3
+
+##### 12. Alignment ###############
+ALIGN_FUNCTION          SIGMOID 0 40 
+ALIGN_W_ZONE_H_LEN      50
+ALIGN_MAX_SHIFT         20
+ALIGN_MATCH_BONUS       1
+ALIGN_MISMATCH_COST     2
+
+WITH_ALIGNMENTS         false
+# MIN_ALIGN_SCORE         40  
+# MAX_ALIGN_SCORE         100 
+# MAX_SHIFT               20  
+# W_ZONE_H_LEN            50
+
+##### 13. Rearrangement rates (w/ alignements)
+NEIGHBOURHOOD_RATE       1e-1
+DUPLICATION_PROPORTION   5e-5
+DELETION_PROPORTION      5e-5
+TRANSLOCATION_PROPORTION 5e-5
+INVERSION_PROPORTION     5e-5
+
+##### 14. Regulation ##############
+# HILL_SHAPE_N                   4 
+# HILL_SHAPE_THETA               0.5
+# DEGRADATION_RATE               1 
+# DEGRADATION_STEP               0.1
+# INDIVIDUAL_EVALUATION_DATES    NULL
+# INDIVIDUAL_LIFE_TIME           0
+# BINDING_ZEROS_PERCENTAGE       0.75
+# WITH_HEREDITY                  false
+# PROTEIN_PRESENCE_LIMIT         1e-5
+
+##### 15. Random, to be (fully) implemented
+TRANSLATION_COST                0
+

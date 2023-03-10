@@ -1,0 +1,18 @@
+# ------------------------------------------
+#  Fittest individual non-coding statistics 
+# ------------------------------------------
+# 
+#  1. Generation
+#  2. Number of bp not included in any CDS
+#  3. Number of bp not included in any functional CDS
+#  4. Number of bp not included in any non functional CDS
+#  5. Number of bp not included in any RNA
+#  6. Number of bp not included in any coding RNA
+#  7. Number of bp not included in any non coding RNA
+#  8. Number of non essential bp
+#  9. Number of non essential bp including non fonctional genes
+# 
+# NOTE: a bp is considered "essential" when it is part of any [functional] CDS
+#   or any promoter or terminator corresponding to an RNA transcribing a [functional] CDS.
+# 
+0 4939 4939 5000 3967 4876 4091 4906 4906

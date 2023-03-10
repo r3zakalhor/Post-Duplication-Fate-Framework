@@ -1,0 +1,12 @@
+# ------------------------------------------------------
+#  Average rearrangement statistics over the population 
+# ------------------------------------------------------
+# 
+#  1. Generation
+#  2. Actual duplication rate
+#  3. Actual deletion rate
+#  4. Actual translocation rate
+#  5. Actual inversion rate
+#  6. Average alignment score (needed score)
+# 
+0 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00 0.000000

@@ -1,0 +1,72 @@
+###################################
+#         AEVOL PARAMATERS        #
+###################################
+
+##### 1. Initial setup ############
+SEED                    7250909
+INIT_POP_SIZE           1000
+WORLD_SIZE              25 40
+INDIV_MIXING            NONE
+INIT_METHOD             ONE_GOOD_GENE CLONE
+CHROMOSOME_INITIAL_LENGTH   5000
+
+##### 2. Selection ################
+SELECTION_SCHEME        fittest
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     5e-5
+SMALL_INSERTION_RATE    5e-5
+SMALL_DELETION_RATE     5e-5
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+DUPLICATION_RATE        5e-5
+DELETION_RATE           5e-5
+TRANSLOCATION_RATE      5e-5
+INVERSION_RATE          5e-5
+
+
+##### 6. Target function ##########
+ENV_SAMPLING      300
+ENV_ADD_GAUSSIAN  0.2   0.3   0.04
+ENV_ADD_GAUSSIAN  0.3   0.2   0.02
+
+ENV_ADD_GAUSSIAN  0.2   0.7   0.02
+ENV_ADD_GAUSSIAN  0.3   0.8   0.04
+
+##### 7. Recording ################
+RECORD_TREE             false
+MORE_STATS              false
+DUMP_STEP               0
+BACKUP_STEP             100
+
+##### 8. Environment variation ####
+ENV_VARIATION           none
+
+##### 9. Phenotypic axis ##########
+ENV_AXIS_FEATURES SECRETION 0.50 METABOLISM  
+
+##### 10. Secretion ###############
+SECRETION_CONTRIB_TO_FITNESS  1  
+SECRETION_INITIAL             0
+SECRETION_DIFFUSION_PROP      0.01
+SECRETION_DEGRADATION_PROP    0.1
+SECRETION_COST                0
+
+##### 11. Plasmids ################
+ALLOW_PLASMIDS              false
+WITH_TRANSFER               false
+
+##### 12. Alignment ###############
+WITH_ALIGNMENTS         false
+# MIN_ALIGN_SCORE         40  
+# MAX_ALIGN_SCORE         100 
+# MAX_SHIFT               20  
+# W_ZONE_H_LEN            50
+
+##### 13. Rearrangement rates (w/ alignements)
+NEIGHBOURHOOD_RATE       5e-5
+DUPLICATION_PROPORTION   5e-5
+DELETION_PROPORTION      5e-5
+TRANSLOCATION_PROPORTION 5e-5
+INVERSION_PROPORTION     5e-5

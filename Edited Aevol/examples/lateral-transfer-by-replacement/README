@@ -1,0 +1,32 @@
+In this example, when an individual reproduces, there is a 10% probability
+that a lateral transfer is attempted. If yes, a donor individual is randomly chosen
+in the population. A segment of its chromosome is copied and transferred in the
+recipient individual (the one which was reproducing). This foreign DNA then replaces
+the homologous segment in the recipient chromosome. This is a way to perform allelic 
+recombination.
+
+To run this example for 200 generations, type the following commands:
+aevol_create
+aevol_run -n 200
+
+Then you can look at all the transfer events that took place by typing:
+more log_transfer.out
+
+You can also reconstruct the ancestral lineage of the final best individual and the
+mutations that occurred on this lineage, to see whether some transfer events were 
+selected:
+aevol_misc_lineage -b 0 -e 200
+aevol_misc_fixed_mutations -f lineage-b000000-e000200-i...-r...ae 
+more stats/fixedmut-b000000-e000200-i...-r...out
+ 
+
+
+Details:
+
+A transfer attempt starts by searching for a short region of strong sequence similarity
+between the recipient chromosome and the donor chromosome. If none is found, there
+will be no transfer. If on the contrary an alignment is found with a sufficient 
+score, this initial alignment is extended until there is no sequence similarity 
+anymore or until a random event stops the extension -- at each extension step, there 
+is a probability called REPL_TRANSFER_DETACH_RATE to stop the extension even if there 
+is some sequence similarity. 

@@ -1,0 +1,15 @@
+# ------------------------------------
+#  Fittest individual gene statistics 
+# ------------------------------------
+# 
+#  1. Generation
+#  2. Number of coding RNAs (at least one gene on RNA)
+#  3. Number of non-coding RNAs
+#  4. Average size of coding RNAs (at least one gene on RNA)
+#  5. Average size of non-coding RNAs
+#  6. Number of functional genes
+#  7. Nb of non functional genes
+#  8. Average size of functional genes
+#  9. Average size of non functional genes (WARNING : bias towards 0)
+# 
+0 1 18 102.000000 30.722222 1 0 45.000000 0.000000 

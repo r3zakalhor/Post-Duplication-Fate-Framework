@@ -1,0 +1,19 @@
+# ------------------------------------------------------------
+#  Standard deviation, fitness statistics over the population 
+# ------------------------------------------------------------
+# 
+#  1. Generation
+#  2. Population size
+#  3. Fitness
+#  4. Genome size (amount of DNA)
+#  5. Metabolic error
+#  6. Parent's metabolic error
+#  7. Metabolic fitness
+#  8. Secretion error
+#  9. Parent's secretion error
+# 10. Secretion fitness
+# 11. Amount of compound present in the grid-cell
+# 12. Int probe
+# 13. Double probe
+# 
+0 1024 7.014398e-156 0 5.921814e-29 0.000000e+00 7.014398e-156 0.000000e+00 0.000000e+00 0.000000e+00 0.000000e+00

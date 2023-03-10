@@ -1,0 +1,111 @@
+\chapternonum{Appendix : \aevol{} Parameters (param.in)}
+\label{app:params}
+\addcontentsline{toc}{chapter}{Appendix : \aevol{} Parameters (param.in)}
+
+
+
+\section{Initialization Parameters}
+
+\subsection{INIT\_POP\_SIZE}
+\subsubsection{Meaning}
+Initial Population Size (constant in many setups)
+\subsubsection{Default Value}
+$1,000$
+
+\subsection{INIT\_METHOD}
+\subsubsection{Meaning}
+Initialisation (bootstrapping) method.
+
+It is strongly recommended to use the default method which is explained hereafter.
+\subsubsection{Default Value}
+ONE\_GOOD\_GENE CLONE
+
+A random sequence of size INITIAL\_GENOME\_LENGTH is generated and evaluated with regard to the defined task.
+This process is repeated until the generated genome perform any subset of the task (\emph{i.e.} has a better fitness than an organism with no genes).
+The population is then filled with clones of the generated organism.
+
+\subsection{INITIAL\_GENOME\_LENGTH}
+\subsubsection{Meaning}
+Size of the initial, randomly generated genome(s).
+\subsubsection{Default Value}
+$5,000$
+
+
+
+\section{Artificial Chemistry Parameters}
+
+\subsection{MAX\_TRIANGLE\_WIDTH}
+\subsubsection{Meaning}
+Maximum degree of protein pleiotropy.
+
+This value must be strictly greater than 0 (which would mean that a protein cannot do anything) and lower than 1 (which means that a protein can contribute to every possible metabolic process).
+\subsubsection{Default Value}
+$0.033333333$
+
+
+
+\section{Selection Parameters}
+
+\subsection{SELECTION\_SCHEME}
+\subsubsection{Meaning}
+Selection scheme to use (\verb?fitness_proportionate?, \verb?linear_ranking? or \verb?exponential_ranking?)
+
+In the \verb?fitness_proportionate? scheme, the probability of reproduction of each organism is proportional to its fitness. The probability of reproduction is proportional to $exp(-k\times{}g)$, where $k$ determines the intensity of selection (it can be set using the SELECTION\_PRESSURE keyword) and $g$ is the ``metabolic error'' (see the model description).
+
+The other two selection schemes are based on the rank of the organisms in the population, which allows one to maintain a constant selective pressure throughout the entire evolutionary process. Organisms are thus first sorted by increasing fitness (the worst individual in the population having rank 1). Then, their probability of reproduction can be computed depending on their rank $r$ and according to whether the linear or exponential scheme is used.
+
+For the \verb?linear_ranking? scheme, the probability of reproduction of an individual is given by $p_{reprod} = \frac{1}{N}\times{}(\eta{}^- + (\eta{}^+ - \eta{}^-)\times{}\frac{r - 1}{N - 1})$, where $\frac{\eta{}^+}{N}$ and $\frac{\eta{}^-}{N}$ represent the probability of reproduction of the best and worst individual respectively. For the population size to remain constant, the sum over $N$ of this expression must be equal to 1 and so $\eta{}^-$ must be equal to $2 - \eta{}^+$. As for $\eta{}^+$, it must be chosen in the interval $[1,2]$ so that the probability increases with the rank and remains in $[0,1]$. To date, variable population size is not supported with the \verb?linear_ranking? scheme, thus only $\eta{}^+$ is required and can be specified using the SELECTION\_PRESSURE parameter
+
+For the \verb?exponential_ranking? scheme, the probability of reproduction is given by $p_{reprod} = \frac{c - 1}{c^N - 1}\times{}c^{N-r}$, where $c \in ]0,1[$ determines the intensity of selection (it can be set using the SELECTION\_PRESSURE keyword). The closer it is to 1, the weaker the selection.
+\subsubsection{Default Value}
+exponential\_ranking
+
+\subsection{SELECTION\_PRESSURE}
+\subsubsection{Meaning}
+Intensity of selection.
+
+This value is interpreted differently according to the selection scheme being used (see the SELECTION\_SCHEME parameter).
+\subsubsection{Default Value}
+$0.998$ (fit for the \verb?exponential_ranking? scheme)
+
+
+
+\section{Local Mutations' Parameters}
+
+\subsection{POINT\_MUTATION\_RATE, \\SMALL\_INSERTION\_RATE, \\SMALL\_DELETION\_RATE}
+\subsubsection{Meaning}
+These parameters set the spontaneous per replication, per base rate of point mutations, small insertions and small deletions (indels) respectively.
+\subsubsection{Default Value}
+$1\times{}10^{-5}$
+
+\subsection{MAX\_INDEL\_SIZE}
+\subsubsection{Meaning}
+Sets the maximum size of indels (small insertions and small deletions) whose actual size will be uniformaly drawn in $[1;MAX\_INDEL\_SIZE]$
+\subsubsection{Default Value}
+$6$
+
+
+
+\section{Chromosomal Rearrangements' Parameters}
+
+There are two distinct ways to perform chromosomal rearrangements, either taking sequence homology into account (which is time consuming) or not (the breakpoints are then chosen at random).
+
+Only the simple case where sequence homology is ignored will be covered here, please see \cite{} for homology driven rearrangements.
+
+\subsection{DUPLICATION\_RATE, \\DELETION\_RATE, \\TRANSLOCATION\_RATE, INVERSION\_RATE}
+\subsubsection{Meaning}
+These parameters are used when sequence homology is ignored. They set the spontaneous per replication, per base rate of each kind of chromosomal rearrangements. The breakpoints defining the sequence that will be either duplicated, deleted, translocated or inverted are drawn at random (uniform law on the genome size).
+\subsubsection{Default Value}
+$1\times{}10^{-5}$
+
+
+% ##### 4. Rearrangement rates (w/o alignements)
+% DUPLICATION_RATE        1e-5
+% DELETION_RATE           1e-5
+% TRANSLOCATION_RATE      1e-5
+% INVERSION_RATE          1e-5
+\section{To be continued...}
+
+
+
+\clearemptydoublepage

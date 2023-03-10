@@ -1,0 +1,70 @@
+###################################
+#         AEVOL PARAMATERS        #
+###################################
+
+##### 1. Initial setup ############
+# 22699 needs to be replaced with actual integer
+SEED                    99693
+INIT_POP_SIZE           5000
+INIT_METHOD             ONE_GOOD_GENE CLONE
+CHROMOSOME_INITIAL_LENGTH   4999
+
+##### 2. Selection ################
+SELECTION_SCHEME        fitness-proportionate 1000
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     1e-4
+SMALL_INSERTION_RATE    1e-4
+SMALL_DELETION_RATE     1e-4
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+WITH_ALIGNMENTS         false
+DUPLICATION_RATE        1e-4
+DELETION_RATE           1e-4
+TRANSLOCATION_RATE      1e-4
+INVERSION_RATE          1e-4
+
+##### 5. Population Structure #####
+
+
+##### 6. Target function ##########
+ENV_SAMPLING      300
+ENV_ADD_GAUSSIAN  0.5   0.33  0.025
+ENV_ADD_GAUSSIAN  0.5   0.66  0.025
+
+
+#ENV_ADD_POINT 0 0
+#ENV_ADD_POINT 0.15 0
+#ENV_ADD_POINT 0.20 0.5
+#ENV_ADD_POINT 0.25 0
+#ENV_ADD_POINT 0.45 0
+#ENV_ADD_POINT 0.5 0.5
+#ENV_ADD_POINT 0.55 0
+#ENV_ADD_POINT 0.65 0
+#ENV_ADD_POINT 0.7 0.5
+#ENV_ADD_POINT 0.75 0
+#ENV_ADD_POINT 1 0
+MAX_TRIANGLE_WIDTH      0.1
+
+##### 7. Recording ################
+BACKUP_STEP             1000
+RECORD_TREE             true
+MORE_STATS              true
+
+
+##### 8. Environment variation ####
+ENV_VARIATION           none
+
+##### 9. Phenotypic axis ##########
+ENV_AXIS_FEATURES       METABOLISM
+
+##### 10. Secretion ###############
+
+##### 11. Plasmids ################
+ALLOW_PLASMIDS              false
+WITH_TRANSFER               false
+
+
+
+

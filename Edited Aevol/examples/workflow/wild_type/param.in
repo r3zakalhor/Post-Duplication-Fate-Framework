@@ -1,0 +1,47 @@
+###################################
+#         AEVOL PARAMATERS        #
+###################################
+
+##### 1. Initial setup ############
+SEED                    486343
+INIT_POP_SIZE           400
+WORLD_SIZE              20 20
+INIT_METHOD             ONE_GOOD_GENE CLONE
+MAX_TRIANGLE_WIDTH  	0.01
+CHROMOSOME_INITIAL_LENGTH   5000
+
+##### 2. Selection ################
+SELECTION_SCHEME        fitness_proportionate   1000
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     5e-6
+SMALL_INSERTION_RATE    5e-6
+SMALL_DELETION_RATE     5e-6
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+DUPLICATION_RATE        5e-6
+DELETION_RATE           5e-6
+TRANSLOCATION_RATE      5e-6
+INVERSION_RATE          5e-6
+
+##### 5. Population Structure #####
+
+##### 6. Target function ##########
+ENV_SAMPLING      300
+ENV_GAUSSIAN  0.5   0.2   0.05
+ENV_GAUSSIAN  0.5   0.6   0.05
+ENV_GAUSSIAN  0.5   0.8   0.05
+
+##### 7. Recording ################
+RECORD_TREE             true
+TREE_STEP               10
+MORE_STATS              false
+DUMP_STEP               0
+BACKUP_STEP             10
+
+##### 8. Environment variation ####
+ENV_VARIATION           autoregressive_height_variation 0.05 5000 7687534
+
+##### 9. Phenotypic axis ##########
+ENV_AXIS_FEATURES       METABOLISM

@@ -1,0 +1,62 @@
+###################################
+#         AEVOL PARAMETERS        #
+###################################
+
+##### 1. Initial setup ############
+STRAIN_NAME             WT0_Noria
+SEED                    14065465410
+INIT_POP_SIZE           1024
+WORLD_SIZE              32 32
+INIT_METHOD             ONE_GOOD_GENE CLONE
+CHROMOSOME_INITIAL_LENGTH   5000
+FUZZY_FLAVOR            3
+
+##### 2. Selection ################
+SELECTION_SCHEME        fitness_proportionate   1000
+
+##### 3. Mutation rates ###########
+POINT_MUTATION_RATE     1e-6
+SMALL_INSERTION_RATE    1e-6
+SMALL_DELETION_RATE     1e-6
+MAX_INDEL_SIZE          6
+
+##### 4. Rearrangement rates (w/o alignements)
+WITH_ALIGNMENTS         false
+DUPLICATION_RATE        1e-6
+DELETION_RATE           1e-6
+TRANSLOCATION_RATE      1e-6
+INVERSION_RATE          1e-6
+
+
+##### 5. Population Structure #####
+
+
+##### 6. Target function ##########
+ENV_SAMPLING      300
+ENV_ADD_GAUSSIAN  0.3   0.25  0.08
+ENV_ADD_GAUSSIAN  1.3   0.52  0.13
+ENV_ADD_GAUSSIAN -1.9   0.5   0.07
+ENV_ADD_GAUSSIAN  0.4   0.8   0.04
+MAX_TRIANGLE_WIDTH      0.01
+
+##### 7. Recording ################
+BACKUP_STEP             100000
+RECORD_TREE             true
+MORE_STATS              false
+
+
+##### 8. Environment variation ####
+ENV_VARIATION           none
+
+##### 9. Phenotypic axis ##########
+ENV_AXIS_FEATURES       METABOLISM
+
+##### 10. Secretion ###############
+
+##### 11. Plasmids ################
+ALLOW_PLASMIDS              false
+WITH_TRANSFER               false
+
+
+
+

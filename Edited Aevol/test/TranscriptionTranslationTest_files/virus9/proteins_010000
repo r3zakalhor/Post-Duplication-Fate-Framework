@@ -1,0 +1,24 @@
+#  1 individual's identifier (id)
+#  2 chromosome or plasmid (c_or_p)
+#  3 strand
+#  4 protein position (pos)
+#  5 length (len)
+#  6 position of last translated nucleotide (lpos)
+#  7 primary sequence (sequence)
+#  8 mean (m)
+#  9 width (w)
+# 10 height (h)
+# 11 concentration (c)
+# 12 feature (f)
+# 13 promoter position (prom_pos)
+# 14 RNA length (rna_len)
+# 15 basal level (basal_level)
+
+id c_or_p trand pos len lpos sequence m w h c f prom_pos rna_len basal_level
+4998 CHROM   LEADING 270 17 320 M0_W1_M1_H1_H0_H0_W1_W0_M1_H0_ST_H1_M1_W0_M1_M0_W0 0.317460 0.051613 0.968254 0.200000 -1 234 357 0.200000
+4998 CHROM   LEADING 340 7 360 W1_M1_H1_H0_W1_W0_M1 0.666667 0.057143 1.000000 0.200000 -1 234 357 0.200000
+4998 CHROM   LEADING 57 9 83 W0_M1_H1_W1_ST_M1_W0_W0_ST 0.666667 0.046667 1.000000 0.200000 -1 234 357 0.200000
+4998 CHROM   LEADING 98 45 232 M0_W0_M1_H1_H0_H0_W1_ST_M1_ST_ST_H1_M1_W0_M1_W0_M1_W0_W1_M0_ST_H0_H0_H0_ST_W1_M1_H1_H0_H0_W1_W0_M1_W0_ST_H1_M1_W0_M1_W1_H1_W0_M0_H0_W0 0.338706 0.047702 0.969223 0.200000 -1 234 357 0.200000
+4998 CHROM   LEADING 173 20 232 W1_M1_H1_H0_H0_W1_W0_M1_W0_ST_H1_M1_W0_M1_W1_H1_W0_M0_H0_W0 0.645161 0.052941 0.937008 0.200000 -1 234 357 0.200000
+4998 CHROM   LAGGING 24 7 4 M0_W1_M1_H1_H0_W1_W0 0.333333 0.057143 1.000000 0.200000 -1 258 354 0.200000
+

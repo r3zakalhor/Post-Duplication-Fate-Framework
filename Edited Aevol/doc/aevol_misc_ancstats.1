@@ -1,0 +1,34 @@
+./"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_misc_ancstats \-h
+|
+.B \-\-help
+.br
+.B aevol_misc_ancstats \-V
+|
+.B \-\-version
+.br
+.B aevol_misc_ancstats \fB\-f\fI LINEAGE_FILE
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_misc_ancstats
+issues statistics for the line of descent of a given individual.
+.SH OPTIONS
+.TP
+.B \-h, \-\-help
+print help, then exit
+.TP
+.B \-V, \-\-version
+print version number, then exit
+.HP
+.B \-f, \-\-file
+.I  LINEAGE_FILE
+.br
+specify which lineage file to use. Lineage files are created by the ae_misc_lineage tool
+.SH "SEE ALSO"
+.B ae_misc_lineage, aevol_create, aevol_modify, aevol_propagate, aevol_run

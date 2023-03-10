@@ -1,0 +1,72 @@
+./"test with man -l <file>
+.TH AEVOL "1" "July 2014" "aevol 4.4" "User Manual"
+.SH NAME
+aevol \- an in silico experimental evolution platform
+.SH SYNOPSIS
+.B aevol_misc_mutagenesis \-h
+|
+.B \-\-help
+.br
+.B aevol_misc_mutagenesis \-V
+|
+.B \-\-version
+.br
+.B aevol_misc_mutagenesis \fR\fB\-g\fI GENER \fR[\fB\-i\fI INDEX\fR | \fB\-r\fI RANK\fR]  \fR [\fB\-m\fI MUTATIONTYPE]  \fR [\fB\-n\fI NBMUTANTS]
+.SH DESCRIPTION
+.B Aevol
+is a simulation platform that allows one to let populations of digital organisms evolve in different conditions and study experimentally the mechanisms responsible for the structuration of the genome and the transcriptome.
+.TP
+.B aevol_misc_mutagenesis
+creates and evaluates single mutants of an individual saved in a backup,  by default the best of its generation. Use option \-g to specify the generation number contanining the individual of interest. There must have been a backup of the population at this generation. For example, if the program is called with the option \-g 4000, there must be a file called pop_004000.ae in the populations directory.
+
+Use either the \-r or the \-i option to select another individual than the best one: with \-i, you have to provide the ID of the individual, and with \-r the rank (1 for the individual with the lowest fitness, N for the fittest one). 
+
+The type of mutations to perform must be specified with the \-m option. Choose 0 to create mutants with a point mutation, 1 for a small insertion, 2 for a small deletion, 3 for a duplication, 4 for a large deletion, 5 for a translocation or 6 for an inversion. 
+
+For the point mutations, all single mutants will be created and evaluated. For the other mutation types, an exhaustive mutagenesis would take too much time, hence only a sample of mutants (1000 by default) will be generated. Use option \-n to specify another sample size.
+
+The output file will be placed in a subdirectory called analysis-generationNUMGENER.
+
+.SH OPTIONS
+
+.TP
+.B \-h, \-\-help
+print help, then exit
+
+.TP
+.B \-V, \-\-version
+print version number, then exit
+
+.HP
+.B \-g, \-\-gener
+.I  NUMGENER
+.br
+generation of the backup containing the individual of interest
+
+.HP
+.B \-i, \-\-index
+.I  INDEX
+.br
+index of individual of interest
+
+.HP
+.B \-r, \-\-rank
+.I  RANK
+.br
+rank of individual of interest. Default = size of the population (fittest individual)
+
+.HP
+.B \-m, \-\-mutation\-type
+.I  MUTATIONTYPE
+.br
+integer type of the mutation carried by each mutant: 0 for a point mutation, 1 for a small insertion, 2 for small deletions, 3 for a duplication, 4 for a large deletion, 5 for a translocation or 6 for an inversion
+
+.HP
+.B \-n, \-\-nb\-mutants
+.I  NBMUTANTS
+.br
+number of single mutants to create and evaluate. Default = 1000. Note that this option  is ignored in the case of point mutations, where all single mutants are created (exhaustive mutagenesis)
+
+
+.SH "SEE ALSO"
+.B aevol_create, aevol_modify, aevol_propagate, aevol_run, aevol_misc_view_generation, aevol_misc_create_eps, aevol_misc_robustness
