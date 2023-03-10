@@ -15,20 +15,21 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
 
 
 
-In that process, you'll need development packages. Here are the basic dependencies on a Debian system:
-'''
-build-essential
-cmake
-zlib1g-dev
-libboost-dev
-libx11-dev  
-libboost-filesystem1.67-dev
-'''
+In this process, you'll need development packages. Here are the basic dependencies on a Debian system:
+
+- build-essential
+- cmake
+- zlib1g-dev
+- libboost-dev
+- libx11-dev  
+- libboost-filesystem1.67-dev
+
 
 One option to install them all at once is to run the following command:
-sudo apt install build-essential cmake zlib1g-dev libboost-dev libx11-dev libboost-filesystem1.67-dev
 
-B) Second, we can use bash script located in the CentralizedFateClassifier directory to run a bunch of aevol simulations:
+- $sudo apt install build-essential cmake zlib1g-dev libboost-dev libx11-dev libboost-filesystem1.67-dev
+
+## 2) Second, we can use bash script located in the CentralizedFateClassifier directory to run a bunch of aevol simulations:
 
 To run a single simulation in aevol we need to do following steps:
 
