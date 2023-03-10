@@ -52,8 +52,7 @@ One option to install them all at once is to run the following command:
  ##### B) Second, run following command to run a simulation: 
  
 - $../../build/bin/aevol_create -C WT_W0.1_V1.txt
-- $../../build/bin/aevol_run -n 1100000
--n 1100000 specified the number of generations.
+- $../../build/bin/aevol_run -n 1100000      //(-n 1100000 specified the number of generations)
 - $../../build/bin/aevol_post_lineage
 - $../../build/bin/aevol_post_protein_map lin*
 - $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000
