@@ -1,9 +1,9 @@
-# Post-Duplication-Fate-Framework
+# Post-Duplication Fate Framework
 
 
 
 
-For inferring duplication fates of a complete aevol simulation, we need to do the following steps in order:
+To infer post-duplication fates of an aevol simulation, we need to do the following steps in order:
 
 A) First, we have to compile aevol code: 
 Compile Aevol with the following commands:
