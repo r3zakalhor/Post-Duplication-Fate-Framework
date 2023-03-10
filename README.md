@@ -1,10 +1,6 @@
 # Post-Duplication-Fate-Framework
 
-###############################################################################
-#
-#  Classifying Duplication Fates at aevol
-#
-###############################################################################
+
 
 
 For inferring duplication fates of a complete aevol simulation, we need to do the following steps in order:
