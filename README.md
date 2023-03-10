@@ -9,9 +9,9 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
 
   - $cd edited aevol
   - $mkdir build
-  -cd build
-  -cmake -DCMAKE_BUILD_TYPE=Release ..
-  -make
+  - $cd build
+  - $cmake -DCMAKE_BUILD_TYPE=Release ..
+  - $make
 
 
 
