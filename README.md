@@ -5,10 +5,11 @@
 
 To infer post-duplication fates of an aevol simulation, we need to do the following steps in order:
 
-A) First, we have to compile aevol code: 
-Compile Aevol with the following commands:
-  mkdir build (create build directory at aevol)
-  cd aevol/build
+1) Compile edited Aevol:
+
+  cd edited aevol
+  mkdir build (create build directory at "edited aevol" directory)
+  cd build
   cmake -DCMAKE_BUILD_TYPE=Release ..
   make
 
