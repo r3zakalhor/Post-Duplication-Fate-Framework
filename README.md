@@ -57,7 +57,7 @@ One option to install them all at once is to run the following command:
 - $../../build/bin/aevol_post_protein_map lin*  (To map all proteins after each event for the given lineage file generated from previous command)
 - $./CentralizedFateClassifier -m default proteins_list_after_events.csv -e 1000000  (To reconstruct gene tree and calculate the probabilities of post-replication fates of 1000000 first generations from proteins_list_after_events.csv that is generated from previous command)
 
-####### Outputs: 
+###### Outputs: dups_fates_probablities.csv which contains the probabilities of post duplication fates of ancestors and two it's descendants. Also, newick.txt represents the reconstructed gene tree.
 
 But at the bash script, we want to run serveral simulations with different fitness function. So, we use all these command to run simulations in bash script but with using different param.in file at each simulation. 
 
