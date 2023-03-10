@@ -7,6 +7,8 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
 
 ## 1) Compile edited Aevol:
 
+###### Aevol is a computational platform that allows for the study and manipulation of populations of digital organisms evolving under different conditions. To compile Aevol use:
+
   - $cd edited aevol
   - $mkdir build
   - $cd build
@@ -30,6 +32,8 @@ One option to install them all at once is to run the following command:
 - $sudo apt install build-essential cmake zlib1g-dev libboost-dev libx11-dev libboost-filesystem1.67-dev
 
 ## 2) Compile Fate Classifier:
+
+###### Centralized Fate Classifier is used to reconstruct the gene tree of the aevol populations and generation, also to calculate the probabilities of post-replication fates. To compile Centralized Fate Classifier:
 
 - $cd CentralizedFateClassifier
 - $g++ -std=c++11 CentralizedFateClassifier.cpp GeneTreeConstructor.h probabilitiescalculation.h -o CentralizedFateClassifier
