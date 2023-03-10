@@ -7,7 +7,7 @@ To infer post-duplication fates of an aevol simulation, we need to do the follow
 
 ## 1) Compile edited Aevol:
 
-###### Aevol is a computational platform that allows for the study and manipulation of populations of digital organisms evolving under different conditions. To compile Aevol use:
+#### Aevol is a computational platform that allows for the study and manipulation of populations of digital organisms evolving under different conditions. To compile Aevol use:
 
   - $cd edited aevol
   - $mkdir build
