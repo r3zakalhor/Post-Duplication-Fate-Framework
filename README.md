@@ -3,7 +3,7 @@
 
 
 
-To infer post-duplication fates of an aevol simulation, we need to do the following steps in order:
+#### To infer post-duplication fates of an aevol simulation, we need to do the following steps in order:
 
 ## 1) Compile edited Aevol:
 
@@ -33,7 +33,7 @@ One option to install them all at once is to run the following command:
 
 ## 2) Compile Fate Classifier:
 
-###### Centralized Fate Classifier is used to reconstruct the gene tree of the aevol populations and generation, also to calculate the probabilities of post-replication fates. To compile Centralized Fate Classifier:
+#### Centralized Fate Classifier is used to reconstruct the gene tree of the aevol populations and generation, also to calculate the probabilities of post-replication fates. To compile Centralized Fate Classifier:
 
 - $cd CentralizedFateClassifier
 - $g++ -std=c++11 CentralizedFateClassifier.cpp GeneTreeConstructor.h probabilitiescalculation.h -o CentralizedFateClassifier
