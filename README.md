@@ -42,11 +42,11 @@ One option to install them all at once is to run the following command:
 
 #### To run a simulation in aevol we need to do following steps:
 
- ##### A) We need to prepare a param.in file that contains aevol simulation parameters (such as mutation rates, BACKUP_STEP, Target function/fitness funcations/environment). A list of parameter files according to environments are available in "Simulation/param files/". Also, we might need a preevolved genome as initial genome. A list of initial genomes (wildtypes) are available in "Simulation/wildtypes/". To create a simulation, place a param file, a wildtype and CentralizedFateClassifier file in CentralizedFateClassifier directory to a new directory "Edited Aevol/examples/new simulation". For example:
+ ##### A) We need to prepare a param.in file that contains aevol simulation parameters (such as mutation rates, BACKUP_STEP, Target function/fitness funcations/environment). A list of parameter files according to environments are available in "Simulation/param files/" (e.g. param1.in represents environment 1). Also, we might need a preevolved genome as initial genome. A list of initial genomes (wildtypes) are available in "Simulation/wildtypes/" (e.g. WT_W0.1_V1.txt represents a wild type with a maximum width of 0.1, and V stands for version). To create a simulation, place a param file, a wildtype and CentralizedFateClassifier file in CentralizedFateClassifier directory to a new directory "Edited Aevol/examples/new simulation". For example:
  
 - $cd Edited Aevol/examples/new simulation
 - $ls
-output: param1.in WT_W0.1_V1.txt CentralizedFateClassifier
+- output: param1.in WT_W0.1_V1.txt CentralizedFateClassifier
  
   
  ##### B) Second, run following command to create a simulation:   ../../build/bin/aevol_create
