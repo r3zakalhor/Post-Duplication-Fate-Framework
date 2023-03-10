@@ -9,7 +9,7 @@
 
 #### Aevol is a computational platform that allows for the study and manipulation of populations of digital organisms evolving under different conditions. To compile Aevol use:
 
-  - $cd edited aevol
+  - $cd Edited Aevol
   - $mkdir build
   - $cd build
   - $cmake -DCMAKE_BUILD_TYPE=Release ..
@@ -42,9 +42,9 @@ One option to install them all at once is to run the following command:
 
 #### To run a simulation in aevol we need to do following steps:
 
- ##### 1) We need to prepare a param.in file that contains aevol simulation parameters (such as mutation rates, BACKUP_STEP, Target function/fitness funcations/environment). A list of parameter files according to environments is available in "Simulation/param files/".
+ ##### A) We need to prepare a param.in file that contains aevol simulation parameters (such as mutation rates, BACKUP_STEP, Target function/fitness funcations/environment). A list of parameter files according to environments are available in "Simulation/param files/". Also, we might need a preevolved genome as initial genome. A list of initial genomes (wildtypes) are available in "Simulation/wildtypes/". To prepare a simulation, place a param file, a wildtype and CentralizedFateClassifier file in CentralizedFateClassifier directory to a new directory "Edited Aevol/examples/new simulation".
   
-  2) Second, run this command to create a simulation:   ../../build/bin/aevol_create
+ ##### B) Second, run following command to create a simulation:   ../../build/bin/aevol_create
     An alternative option that we often use (and that proved efficient) is to generate Wild-Types on long evolutions (typically 10 million generations) and then to initialize all the experiments from these WTs.
     So, instead of using ../../build/bin/aevol_create we can use ../../build/bin/aevol_create -C WT0.txt (a list of wild types that evolved for 10 million generations are in CentralizedFateClassifier directory)
   
